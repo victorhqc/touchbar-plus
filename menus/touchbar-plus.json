@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle touchbar-plus",
+        "command": "touchbar-plus:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "touchbar-plus",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "touchbar-plus:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

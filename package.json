@@ -2,8 +2,12 @@
   "name": "touchbar-plus",
   "main": "./lib/touchbar-plus",
   "version": "0.0.0",
-  "description": "A short description of your package",
+  "description": "Better Atom touchbar support for Mac OSX",
   "keywords": [
+    "touchbar",
+    "mac",
+    "osx",
+    "atom"
   ],
   "activationCommands": {
     "atom-workspace": "touchbar-plus:toggle"
@@ -13,6 +17,12 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-react": "^7.12.4"
   }
 }

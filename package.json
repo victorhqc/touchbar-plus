@@ -9,9 +9,6 @@
     "osx",
     "atom"
   ],
-  "activationCommands": {
-    "atom-workspace": "touchbar-plus:toggle"
-  },
   "repository": "https://github.com/atom/touchbar-plus",
   "license": "MIT",
   "engines": {

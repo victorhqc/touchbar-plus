@@ -1,7 +1,16 @@
 {
   "extends": "airbnb",
   "env": {
-    "node": true,
-    "browser": true
+    "node": true
+  },
+  "globals": {
+    "atom": true
+  },
+  "settings": {
+    "import/core-modules": [
+      "electron",
+      "atom",
+      "remote"
+    ]
   }
 }

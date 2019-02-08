@@ -1,5 +1,3 @@
-'use babel';
-
 export default {
   TextEditor: [
     {
@@ -12,14 +10,6 @@ export default {
     {
       type: 'button',
       label: 'Another button',
-      // iconPosition: 'left',
-      // iconColor: '#fff',
-      // icon: 'octicon-unfold',
-      click: 'editor:unfold-all',
-    },
-    {
-      type: 'button',
-      label: 'Esto es un chiqui botón',
       // iconPosition: 'left',
       // iconColor: '#fff',
       // icon: 'octicon-unfold',

@@ -1,8 +1,6 @@
-'use babel';
-
 export default class TouchbarPlusView {
 
-  constructor(serializedState) {
+  constructor() {
     // Create root element
     this.element = document.createElement('div');
     this.element.classList.add('touchbar-plus');
@@ -25,5 +23,4 @@ export default class TouchbarPlusView {
   getElement() {
     return this.element;
   }
-
 }

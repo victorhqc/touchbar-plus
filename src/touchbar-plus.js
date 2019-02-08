@@ -1,5 +1,3 @@
-'use babel';
-
 import { CompositeDisposable } from 'atom';
 import debounce from 'lodash/debounce';
 import TouchbarPlusView from './touchbar-plus-view';

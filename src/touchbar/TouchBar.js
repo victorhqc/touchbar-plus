@@ -1,8 +1,10 @@
-'use babel';
+/* eslint import/no-named-as-default-member: 0 */
+/* eslint import/no-named-as-default: 0 */
 
-import { TouchBar as ElectronTouchBar } from 'remote';
-import { touchBarSerializer } from '../serializers';
-import demo from '../components/demo';
+// import { TouchBar as ElectronTouchBar } from 'remote';
+// import { touchBarSerializer } from '../serializers';
+// import demo from '../components/demo';
+import start from './start';
 
 const ACTIVE = 'acticve';
 const INACTIVE = 'inactive';
@@ -26,7 +28,7 @@ class TouchBar {
     this.status = ACTIVE;
 
     console.time('USING-REACT-RENDERER');
-    demo();
+    start();
     console.timeEnd('USING-REACT-RENDERER');
 
     // console.log('ABOUT TO SERIALIZE');

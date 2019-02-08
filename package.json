@@ -18,6 +18,9 @@
     "compile": "babel src/ --out-dir lib",
     "dev": "npm run compile -- --watch"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "async": "^2.6.1",
     "color-convert": "^2.0.0",

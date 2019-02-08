@@ -1,3 +1,5 @@
+'use babel';
+
 /* eslint import/no-extraneous-dependencies: 0 */
 
 import { ReactTouchBar, TouchBar } from 'touchbar-electron-renderer';

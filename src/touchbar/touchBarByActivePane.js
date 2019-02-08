@@ -1,3 +1,5 @@
+'use babel';
+
 export function getTouchBarButtonsForPane(item) {
   const allButtons = JSON.parse(atom.config.get('touchbar-plus.items')) || {};
 

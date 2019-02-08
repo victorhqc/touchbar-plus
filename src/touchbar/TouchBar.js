@@ -1,3 +1,5 @@
+'use babel';
+
 /* eslint import/no-named-as-default-member: 0 */
 /* eslint import/no-named-as-default: 0 */
 

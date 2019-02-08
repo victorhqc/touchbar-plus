@@ -1,17 +1,7 @@
 {
-  "extends": "airbnb",
-  "env": {
-    "node": true,
-    "browser": true
-  },
+  "extends": ["healthier", "healthier/react"],
+  "parser": "babel-eslint",
   "globals": {
     "atom": true
-  },
-  "settings": {
-    "import/core-modules": [
-      "electron",
-      "atom",
-      "remote"
-    ]
   }
 }

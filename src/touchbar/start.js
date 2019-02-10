@@ -8,15 +8,15 @@ import emojis from 'emoji.json';
 
 const faceEmojis = emojis.filter(emoji => emoji.keywords.match(/face/gi));
 
-const FaceEmojis = () => (
-  <popover label={emojis[0].char}>
-    {faceEmojis.map(emoji => (
-      <button key={emoji.no}>
-        {emoji.char}
-      </button>
-    ))}
-  </popover>
-);
+// const FaceEmojis = () => (
+//   <popover label={emojis[0].char}>
+//     {faceEmojis.map(emoji => (
+//       <button key={emoji.no}>
+//         {emoji.char}
+//       </button>
+//     ))}
+//   </popover>
+// );
 
 class AtomTouchBar extends Component {
   constructor(props) {
@@ -26,11 +26,14 @@ class AtomTouchBar extends Component {
       now: Date.now(),
       isClicked: false,
       selectedColor: '#f2a4af',
+      selectedEmojiIndex: 0,
     };
 
     this.onButtonClick = this.onButtonClick.bind(this);
     this.updateNow = this.updateNow.bind(this);
     this.onColorChange = this.onColorChange.bind(this);
+    this.onChangeEmoji = this.onChangeEmoji.bind(this);
+    this.onEmojiTap = this.onEmojiTap.bind(this);
   }
 
   onButtonClick() {
@@ -53,6 +56,17 @@ class AtomTouchBar extends Component {
     console.log('UPDATING COLOR', color);
     this.setState({
       selectedColor: color,
+    });
+  }
+
+  onChangeEmoji(index) {
+    // console.log('CHANGING EMOJI', faceEmojis[index]);
+  }
+
+  onEmojiTap(index) {
+    console.log('TAPPING EMOJI', index, faceEmojis[index]);
+    this.setState({
+      selectedEmojiIndex: index,
     });
   }
 
@@ -84,17 +98,16 @@ class AtomTouchBar extends Component {
           <color>#c9746e</color>
         </color-picker>
 
-        <group>
-          <button backgroundColor={this.state.selectedColor}>A button in a group</button>
-          {
-            this.state.isClicked ? (
-              <button>And another one</button>
-            ) : null
-          }
-        </group>
-
         <label color={this.state.selectedColor}>I'm a label</label>
-        <FaceEmojis />
+        {/* <popover label={emojis[this.state.selectedEmojiIndex].char}>
+          <scrubber onChange={this.onChangeEmoji} onClick={this.onEmojiTap} selectedStyle="background">
+            {faceEmojis.map(emoji => (
+              <button key={emoji.no}>
+                {emoji.char}
+              </button>
+            ))}
+          </scrubber>
+        </popover> */}
       </Fragment>
     );
   }

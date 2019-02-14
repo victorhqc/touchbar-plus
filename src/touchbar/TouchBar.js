@@ -6,10 +6,44 @@
 // import { TouchBar as ElectronTouchBar } from 'remote';
 // import { touchBarSerializer } from '../serializers';
 // import demo from '../components/demo';
+import { TouchBar as NativeTouchBar } from 'remote';
+import emojis from 'emoji.json';
 import start from './start';
+
+const { TouchBarButton, TouchBarScrubber, TouchBarPopover } = NativeTouchBar;
+const faceEmojis = emojis.filter(emoji => emoji.keywords.match(/face/gi));
 
 const ACTIVE = 'acticve';
 const INACTIVE = 'inactive';
+
+function buildSimpleTouchbar() {
+  const button = new TouchBarButton({
+    label: 'Hello world',
+    backgroundColor: '#d9b1b1',
+  });
+
+  const scrubber = new TouchBarScrubber({
+    items: faceEmojis.map((emoji) => (
+      new TouchBarButton({
+        label: emoji.char,
+      })
+    )),
+  });
+
+  const popover = new TouchBarPopover({
+    label: faceEmojis[0].char,
+    items: [
+      scrubber,
+    ],
+  });
+
+  const touchBar = new NativeTouchBar([
+    button,
+    popover,
+  ]);
+
+  atom.getCurrentWindow().setTouchBar(touchBar);
+}
 
 class TouchBar {
   constructor(elements = null) {
@@ -30,6 +64,9 @@ class TouchBar {
     this.status = ACTIVE;
 
     console.time('USING-REACT-RENDERER');
+
+    // buildSimpleTouchbar();
+
     start();
     console.timeEnd('USING-REACT-RENDERER');
 

@@ -2,11 +2,13 @@
 
 import { CompositeDisposable } from 'atom';
 import debounce from 'lodash/debounce';
+import { createMemoryHistory } from 'history';
 import TouchbarPlusView from './touchbar-plus-view';
 import {
   TouchBar,
   getTouchBarButtonsForPane,
-  observeAndRenderTouchBarForActivePaneItem,
+  navigateByActivePane,
+  // observeAndRenderTouchBarForActivePaneItem,
 } from './touchbar';
 import defaultButtons from './config-default-buttons';
 
@@ -33,7 +35,10 @@ export default {
       item: this.touchbarPlusView.getElement(),
       visible: false,
     });
-    this.touchbar = new TouchBar();
+
+    const history = createMemoryHistory();
+
+    this.touchbar = new TouchBar(history);
 
     // Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     this.subscriptions = new CompositeDisposable();
@@ -46,8 +51,9 @@ export default {
     // Register subscription for active PaneItem
     this.subscriptions.add(atom.workspace.observeActivePaneItem(
       debounce(
-        item => observeAndRenderTouchBarForActivePaneItem(item, this.touchbar),
-        150,
+        item => navigateByActivePane(history, item),
+        // item => observeAndRenderTouchBarForActivePaneItem(item, this.touchbar),
+        50,
         {
           leading: false,
           trailing: true,
@@ -59,6 +65,8 @@ export default {
     // ));
 
     this.subscriptions.add(this.touchbar);
+
+    this.touchbar.init();
   },
 
   deactivate() {

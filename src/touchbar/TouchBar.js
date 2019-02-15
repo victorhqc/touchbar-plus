@@ -7,31 +7,33 @@
 // import { touchBarSerializer } from '../serializers';
 // import demo from '../components/demo';
 import { TouchBar as NativeTouchBar } from 'remote';
-import emojis from 'emoji.json';
+import emoji from 'node-emoji';
 import start from './start';
 
 const { TouchBarButton, TouchBarScrubber, TouchBarPopover } = NativeTouchBar;
-const faceEmojis = emojis.filter(emoji => emoji.keywords.match(/face/gi));
+// const faceEmojis = emojis.filter(emoji => emoji.keywords.match(/face/gi));
+const faceEmojis = emoji.search('face');
 
 const ACTIVE = 'acticve';
 const INACTIVE = 'inactive';
 
 function buildSimpleTouchbar() {
+  console.time('USING-SIMPLE-TOUCHBAR');
   const button = new TouchBarButton({
     label: 'Hello world',
     backgroundColor: '#d9b1b1',
   });
 
   const scrubber = new TouchBarScrubber({
-    items: faceEmojis.map((emoji) => (
+    items: faceEmojis.map(({ emoji }) => (
       new TouchBarButton({
-        label: emoji.char,
+        label: emoji,
       })
     )),
   });
 
   const popover = new TouchBarPopover({
-    label: faceEmojis[0].char,
+    label: faceEmojis[0].emoji,
     items: [
       scrubber,
     ],
@@ -43,11 +45,12 @@ function buildSimpleTouchbar() {
   ]);
 
   atom.getCurrentWindow().setTouchBar(touchBar);
+  console.timeEnd('USING-SIMPLE-TOUCHBAR');
 }
 
 class TouchBar {
-  constructor(elements = null) {
-    this.init(elements);
+  constructor(history) {
+    this.history = history;
   }
 
   isDisposable() { return true; } // eslint-disable-line
@@ -56,32 +59,21 @@ class TouchBar {
     this.destroy();
   }
 
-  init(elements) {
-    if (!elements) {
-      return;
-    }
-
+  init() {
     this.status = ACTIVE;
-
-    console.time('USING-REACT-RENDERER');
+    console.log('INIT TOUCHBAR');
 
     // buildSimpleTouchbar();
 
-    start();
-    console.timeEnd('USING-REACT-RENDERER');
+    start(this.history);
 
-    // console.log('ABOUT TO SERIALIZE');
-    // touchBarSerializer(elements).then((serialized) => {
-    //   console.log('SERIALIZED');
-    //   this.instance = new ElectronTouchBar(serialized);
-    //   atom.getCurrentWindow().setTouchBar(this.instance);
-    // });
   }
 
   destroy() {
     this.status = INACTIVE;
     atom.getCurrentWindow().setTouchBar(null);
     this.instance = null;
+    this.history = null;
   }
 
   toggle(elements) {

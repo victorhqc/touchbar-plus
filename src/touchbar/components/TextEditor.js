@@ -1,36 +1,22 @@
 'use babel';
 
 import React, { Component, Fragment } from 'react';
-import { nativeImage } from 'remote';
 import {
-  hexToHsl,
   createOcticonImage,
   executeAtomCommand,
 } from '../../utils';
 
 import ToggleSidebarButton from './ToggleSidebarButton';
 import FoldCodePopover from './FoldCodePopover';
+import CommandPaletteButton from './CommandPaletteButton';
 
 export default class TextEditor extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      foldIcon: null,
-      unfoldIcon: null,
+      folderIcon: null,
     };
-
-    const whiteColor = hexToHsl('#ffffff');
-
-    this.searchIcon = nativeImage.createFromNamedImage(
-      'NSTouchBarSearchTemplate',
-      whiteColor,
-    );
-
-    this.folderIcon = nativeImage.createFromNamedImage(
-      'NSTouchBarFolderTemplate',
-      whiteColor,
-    );
 
     this.buildOcticonIcons();
   }
@@ -60,13 +46,7 @@ export default class TextEditor extends Component {
       <Fragment>
         <ToggleSidebarButton />
         <FoldCodePopover />
-        <button
-          onClick={() => executeAtomCommand('command-palette:toggle')}
-          icon={this.searchIcon}
-          iconPosition="left"
-        >
-          Command palette
-        </button>
+        <CommandPaletteButton />
         <popover
           icon={folderIcon}
         >

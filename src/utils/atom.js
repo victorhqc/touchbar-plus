@@ -7,3 +7,8 @@ export function getActiveElement() {
 
   return document.activeElement;
 };
+
+export function executeAtomCommand(command) {
+  const activeElement = getActiveElement();
+  atom.commands.dispatch(activeElement, command);
+}

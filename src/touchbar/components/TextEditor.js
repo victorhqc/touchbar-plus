@@ -4,7 +4,12 @@
 
 import React, { Component, Fragment } from 'react';
 import { nativeImage } from 'remote';
-import { hexToHsl, getActiveElement, createOcticonImage } from '../../utils';
+import {
+  hexToHsl,
+  getActiveElement,
+  createOcticonImage,
+  executeAtomCommand,
+} from '../../utils';
 
 const buildArray = (size) => Array.from(Array(size).keys());
 
@@ -17,9 +22,21 @@ export default class TextEditor extends Component {
       unfoldIcon: null,
     };
 
+    const whiteColor = hexToHsl('#ffffff');
+
     this.sideBarIcon = nativeImage.createFromNamedImage(
       'NSTouchBarSidebarTemplate',
-      hexToHsl('#ffffff'),
+      whiteColor,
+    );
+
+    this.searchIcon = nativeImage.createFromNamedImage(
+      'NSTouchBarSearchTemplate',
+      whiteColor,
+    );
+
+    this.folderIcon = nativeImage.createFromNamedImage(
+      'NSTouchBarFolderTemplate',
+      whiteColor,
     );
 
     this.buildOcticonIcons();
@@ -28,28 +45,39 @@ export default class TextEditor extends Component {
   }
 
   async buildOcticonIcons() {
+    const whiteColor = '#ffffff';
+
     const foldPromise = createOcticonImage({
       icon: 'fold',
-      color: '#ffffff',
+      color: whiteColor,
+      height: 204,
+      width: 204,
+      scaleFactor: 10.0,
     });
 
     const unfoldPromise = createOcticonImage({
       icon: 'unfold',
-      color: '#ffffff',
+      color: whiteColor,
+      height: 204,
+      width: 204,
+      scaleFactor: 10.0,
+    });
+
+    const folderPromise = createOcticonImage({
+      icon: 'file-directory',
+      color: whiteColor,
+      height: 204,
+      width: 204,
+      scaleFactor: 10.0,
     });
 
     const [
       foldIcon,
       unfoldIcon,
-    ] = await Promise.all([foldPromise, unfoldPromise]);
+      folderIcon,
+    ] = await Promise.all([foldPromise, unfoldPromise, folderPromise]);
 
-    this.setState({ foldIcon, unfoldIcon });
-  }
-
-
-  toggleSideBar() {
-    const activeElement = getActiveElement();
-    atom.commands.dispatch(activeElement, 'tree-view:toggle');
+    this.setState({ foldIcon, unfoldIcon, folderIcon });
   }
 
   foldCode(index) {
@@ -59,13 +87,8 @@ export default class TextEditor extends Component {
     };
   }
 
-  unfoldCode() {
-    const activeElement = getActiveElement();
-    atom.commands.dispatch(activeElement, 'editor:unfold-all');
-  }
-
   renderFoldButtons() {
-    const foldingLevels = 6;
+    const foldingLevels = 5;
     return buildArray(foldingLevels).map(index => (
       <button
         key={`fold-${index}`}
@@ -78,26 +101,46 @@ export default class TextEditor extends Component {
   }
 
   render() {
-    const { foldIcon } = this.state;
+    const { foldIcon, unfoldIcon, folderIcon } = this.state;
 
     return (
       <Fragment>
         <button
-          onClick={this.toggleSideBar}
+          onClick={() => executeAtomCommand('tree-view:toggle')}
           icon={this.sideBarIcon}
         />
         <popover
-          label="Fold code"
           icon={foldIcon}
         >
           <button
-            onClick={this.unfoldCode}
-            icon={this.state.unfoldIcon}
+            onClick={() => executeAtomCommand('editor:unfold-all')}
+            icon={unfoldIcon}
             iconPosition="left"
           >
             Unfold code
           </button>
           {this.renderFoldButtons()}
+        </popover>
+        <button
+          onClick={() => executeAtomCommand('command-palette:toggle')}
+          icon={this.searchIcon}
+          iconPosition="left"
+        >
+          Command palette
+        </button>
+        <popover
+          icon={folderIcon}
+        >
+        <button
+          onClick={() => executeAtomCommand('fuzzy-finder:toggle-file-finder')}
+        >
+          Search all files
+        </button>
+          <button
+            onClick={() => executeAtomCommand('fuzzy-finder:toggle-git-status-finder')}
+          >
+            Search modified files
+          </button>
         </popover>
       </Fragment>
     );

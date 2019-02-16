@@ -6,7 +6,12 @@ import svg2img from 'svg2img';
 
 const memoizedOcticons = {};
 
-const scaleSizes = (height, width, scaleFactor = 10.0) => ({
+const defaultSizes = (height = 120, width = 160) => ({
+  width,
+  height,
+});
+
+const scaleSizes = ({ height, width, scaleFactor = 10.0 }) => ({
   width: width / scaleFactor,
   height: height / scaleFactor,
   scaleFactor,
@@ -22,14 +27,16 @@ export function createOcticonImage({icon, color, height, width, scaleFactor }) {
     fill: color,
   });
 
+  const sizes = defaultSizes(height, width);
+
   return new Promise((resolve, reject) => {
-    svg2img(octiconSVG, { width, height }, (error, buffer) => {
+    svg2img(octiconSVG, sizes, (error, buffer) => {
       if (error) {
         return reject(error);
       }
 
       const image = nativeImage.createFromBuffer(buffer, {
-        ...scaleSizes(scaleFactor),
+        ...scaleSizes({ ...sizes, scaleFactor })
       });
 
       // Memoize result to make parsing a bit faster next time.

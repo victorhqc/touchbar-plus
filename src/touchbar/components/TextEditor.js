@@ -11,6 +11,8 @@ import {
   executeAtomCommand,
 } from '../../utils';
 
+import ToggleSidebarButton from './ToggleSidebarButton';
+
 const buildArray = (size) => Array.from(Array(size).keys());
 
 export default class TextEditor extends Component {
@@ -23,11 +25,6 @@ export default class TextEditor extends Component {
     };
 
     const whiteColor = hexToHsl('#ffffff');
-
-    this.sideBarIcon = nativeImage.createFromNamedImage(
-      'NSTouchBarSidebarTemplate',
-      whiteColor,
-    );
 
     this.searchIcon = nativeImage.createFromNamedImage(
       'NSTouchBarSearchTemplate',
@@ -105,10 +102,7 @@ export default class TextEditor extends Component {
 
     return (
       <Fragment>
-        <button
-          onClick={() => executeAtomCommand('tree-view:toggle')}
-          icon={this.sideBarIcon}
-        />
+        <ToggleSidebarButton />
         <popover
           icon={foldIcon}
         >

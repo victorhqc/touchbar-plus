@@ -1,35 +1,15 @@
 'use babel';
 
-/* eslint import/no-extraneous-dependencies: 0 */
+import React, { Fragment } from 'react';
 
-import React, { Component, Fragment } from 'react';
-import { nativeImage } from 'remote';
-import { hexToHsl, getActiveElement } from '../../utils';
+import ToggleSidebarButton from './ToggleSidebarButton';
 
-export default class TreeView extends Component {
-  constructor(props) {
-    super(props);
+const TreeView = () => (
+  <Fragment>
+    <ToggleSidebarButton
+      backgroundColor="#d9b1b1"
+    />
+  </Fragment>
+);
 
-    this.sideBarIcon = nativeImage.createFromNamedImage(
-      'NSTouchBarSidebarTemplate',
-      hexToHsl('#ffffff'),
-    );
-  }
-
-  toggleSideBar() {
-    const activeElement = getActiveElement();
-    atom.commands.dispatch(activeElement, 'tree-view:toggle');
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <button
-          backgroundColor="#d9b1b1"
-          onClick={this.toggleSideBar}
-          icon={this.sideBarIcon}
-        />
-      </Fragment>
-    );
-  }
-}
+export default TreeView;

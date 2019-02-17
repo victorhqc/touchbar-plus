@@ -24,11 +24,11 @@
   "dependencies": {
     "async": "^2.6.1",
     "color-convert": "^2.0.0",
+    "emojilib": "^2.4.0",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
-    "node-emoji": "^1.8.1",
     "octicons": "0.0.0-882a0ed25",
-    "react": "^16.8.1",
+    "react": "^16.8.2",
     "react-router": "^4.3.1",
     "svg2img": "^0.5.0"
   },

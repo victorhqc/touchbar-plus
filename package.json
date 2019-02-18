@@ -30,7 +30,8 @@
     "octicons": "0.0.0-882a0ed25",
     "react": "^16.8.2",
     "react-router": "^4.3.1",
-    "svg2img": "^0.5.0"
+    "svg2img": "^0.5.0",
+    "touchbar-electron-renderer": "^0.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

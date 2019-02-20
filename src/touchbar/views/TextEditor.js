@@ -7,14 +7,18 @@ import FoldCodePopover from '../components/FoldCodePopover';
 import CommandPaletteButton from '../components/CommandPaletteButton';
 import SearchFilesPopover from '../components/SearchFilesPopover';
 import ToggleGitTabButton from '../components/ToggleGitTabButton';
+import NavigateTabsBtnGroup from '../components/NavigateTabsBtnGroup';
 
 const TextEditor = () => (
   <Fragment>
+    <NavigateTabsBtnGroup />
     <ToggleSidebarButton />
-    <FoldCodePopover />
-    <CommandPaletteButton />
-    <SearchFilesPopover />
     <ToggleGitTabButton />
+    <spacer small />
+    <CommandPaletteButton />
+    <spacer small />
+    <FoldCodePopover />
+    <SearchFilesPopover />
   </Fragment>
 );
 

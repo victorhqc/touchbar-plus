@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { ReactTouchBar, TouchBar } from 'touchbar-electron-renderer';
-import Root from './components/Root';
+import Root from './Root';
 
 export default function start(history) {
   console.time('USING-REACT-RENDERER');

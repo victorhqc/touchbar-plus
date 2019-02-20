@@ -3,8 +3,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 
-import TextEditor from './TextEditor';
-import TreeView from './TreeView';
+import TextEditor from './views/TextEditor';
+import TreeView from './views/TreeView';
 
 const App = () => (
   <Switch>

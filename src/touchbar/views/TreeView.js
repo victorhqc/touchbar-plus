@@ -2,13 +2,11 @@
 
 import React, { Fragment } from 'react';
 
-import ToggleSidebarButton from './ToggleSidebarButton';
+import ToggleSidebarButton from '../components/ToggleSidebarButton';
 
 const TreeView = () => (
   <Fragment>
-    <ToggleSidebarButton
-      backgroundColor="#d9b1b1"
-    />
+    <ToggleSidebarButton />
   </Fragment>
 );
 

@@ -19,7 +19,6 @@ class TouchBar {
   init() {
     this.status = ACTIVE;
     start(this.history);
-
   }
 
   destroy() {

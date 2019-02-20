@@ -14,6 +14,9 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
   "scripts": {
     "compile": "babel src/ --out-dir lib",
     "dev": "npm run compile -- --watch"

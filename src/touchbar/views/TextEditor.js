@@ -11,8 +11,8 @@ import NavigateTabsBtnGroup from '../components/NavigateTabsBtnGroup';
 
 const TextEditor = () => (
   <Fragment>
-    <NavigateTabsBtnGroup />
     <ToggleSidebarButton />
+    <NavigateTabsBtnGroup />
     <ToggleGitTabButton />
     <spacer small />
     <CommandPaletteButton />

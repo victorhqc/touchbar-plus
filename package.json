@@ -19,7 +19,9 @@
   ],
   "scripts": {
     "compile": "babel src/ --out-dir lib",
-    "dev": "npm run compile -- --watch"
+    "rebuild": "electron-rebuild -v 2.0.16",
+    "dev": "npm run compile -- --watch",
+    "postinstall": "npm run rebuild"
   },
   "files": [
     "lib"
@@ -31,7 +33,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.11",
     "octicons": "0.0.0-882a0ed25",
-    "react": "^16.8.2",
+    "react": "16.8.2",
     "react-router": "^4.3.1",
     "svg2img": "^0.5.0",
     "touchbar-electron-renderer": "^0.1.1"
@@ -42,6 +44,7 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
+    "electron-rebuild": "^1.8.4",
     "eslint": "^5.3.0",
     "eslint-config-healthier": "^1.0.2"
   }

@@ -21,9 +21,6 @@ class SearchFilesPopover extends Component {
     const icon = await createOcticonImage({
       icon: 'file-directory',
       color: '#ffffff',
-      height: 167,
-      width: 167,
-      scaleFactor: 10.0,
     });
     this.setState({ icon });
   }

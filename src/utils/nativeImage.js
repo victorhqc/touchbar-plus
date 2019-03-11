@@ -11,23 +11,26 @@ const defaultSizes = (height = 120, width = 160) => ({
   height,
 });
 
-const scaleSizes = ({ height, width, scaleFactor = 10.0 }) => ({
+const scaleSizes = (height, width, scaleFactor = 10.0) => ({
   width: width / scaleFactor,
   height: height / scaleFactor,
   scaleFactor,
 })
 
-export function createOcticonImage({icon, color, height, width, scaleFactor }) {
+export function createOcticonImage({ icon, color, width, height, scaleFactor }) {
   // Memoized octicon.
   if (memoizedOcticons[icon]) {
     return Promise.resolve(memoizedOcticons[icon]);
   }
 
+  const octiconWidth = width || octicons[icon].width * 10 * 1.2;
+  const octiconHeight = height || octicons[icon].height * 10 * 1.2;
+
   const octiconSVG = octicons[icon].toSVG({
     fill: color,
   });
 
-  const sizes = defaultSizes(height, width);
+  const sizes = defaultSizes(octiconHeight, octiconWidth);
 
   return new Promise((resolve, reject) => {
     svg2img(octiconSVG, sizes, (error, buffer) => {
@@ -36,7 +39,7 @@ export function createOcticonImage({icon, color, height, width, scaleFactor }) {
       }
 
       const image = nativeImage.createFromBuffer(buffer, {
-        ...scaleSizes({ ...sizes, scaleFactor })
+        ...scaleSizes(octiconHeight, octiconWidth, scaleFactor)
       });
 
       // Memoize result to make parsing a bit faster next time.

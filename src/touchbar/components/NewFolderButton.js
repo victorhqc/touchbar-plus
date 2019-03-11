@@ -20,9 +20,6 @@ class NewFolderButton extends Component {
     const icon = await createOcticonImage({
       icon: 'file-directory',
       color: '#ffffff',
-      height: 167,
-      width: 167,
-      scaleFactor: 10.0,
     });
 
     this.setState({ icon });
@@ -35,7 +32,7 @@ class NewFolderButton extends Component {
     return (
       <button
         {...props}
-        onClick={() => executeAtomCommand('application:add-project-folder')}
+        onClick={() => executeAtomCommand('tree-view:add-folder')}
         iconPosition="left"
         icon={icon}
       >

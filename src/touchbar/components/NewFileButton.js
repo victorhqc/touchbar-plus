@@ -20,9 +20,6 @@ class NewFileButton extends Component {
     const icon = await createOcticonImage({
       icon: 'file',
       color: '#ffffff',
-      height: 194,
-      width: 167,
-      scaleFactor: 10.0,
     });
 
     this.setState({ icon });
@@ -35,7 +32,7 @@ class NewFileButton extends Component {
     return (
       <button
         {...props}
-        onClick={() => executeAtomCommand('application:new-file')}
+        onClick={() => executeAtomCommand('tree-view:add-file')}
         iconPosition="left"
         icon={icon}
       >

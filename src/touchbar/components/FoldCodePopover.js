@@ -29,17 +29,11 @@ export default class FoldCodePopover extends Component {
     const foldPromise = createOcticonImage({
       icon: 'fold',
       color: whiteColor,
-      height: 167,
-      width: 167,
-      scaleFactor: 10.0,
     });
 
     const unfoldPromise = createOcticonImage({
       icon: 'unfold',
       color: whiteColor,
-      height: 167,
-      width: 167,
-      scaleFactor: 10.0,
     });
 
     const [

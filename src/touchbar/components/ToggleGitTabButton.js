@@ -20,11 +20,8 @@ class ToggleGitTabButton extends Component {
 
   async buildIcon() {
     const icon = await createOcticonImage({
-      icon: 'git-commit',
+      icon: 'git-branch',
       color: '#ffffff',
-      height: 167,
-      width: 167,
-      scaleFactor: 10.0,
     });
 
     this.setState({ icon });
@@ -34,12 +31,9 @@ class ToggleGitTabButton extends Component {
     return (
       <button
         {...this.props}
-        iconPosition="left"
         icon={this.state.icon}
         onClick={() => executeAtomCommand('github:toggle-git-tab')}
-      >
-        Git
-      </button>
+      />
     );
   }
 }

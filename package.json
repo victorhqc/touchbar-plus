@@ -17,7 +17,7 @@
   "dependencies": {
     "async": "^2.6.1",
     "color-convert": "^2.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "octicons": "0.0.0-882a0ed25",
     "svg2img": "^0.5.0"
   },

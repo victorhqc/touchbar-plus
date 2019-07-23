@@ -19,9 +19,9 @@
   ],
   "scripts": {
     "compile": "babel src/ --out-dir lib",
-    "rebuild": "electron-rebuild -v 2.0.16",
+    "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
     "dev": "npm run compile -- --watch",
-    "postinstall": "npm run rebuild"
+    "postinstall": "npm run electron-rebuild"
   },
   "files": [
     "lib"
@@ -31,12 +31,12 @@
     "color-convert": "^2.0.0",
     "emojilib": "^2.4.0",
     "history": "^4.7.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "octicons": "0.0.0-882a0ed25",
     "react": "16.8.2",
     "react-router": "^4.3.1",
     "svg2img": "^0.5.0",
-    "touchbar-electron-renderer": "^0.1.1"
+    "touchbar-electron-renderer": "^0.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

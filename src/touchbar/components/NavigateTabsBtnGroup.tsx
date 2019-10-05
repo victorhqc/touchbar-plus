@@ -1,6 +1,8 @@
 import React, { Fragment, Component } from 'react';
-import { nativeImage, NativeImage } from 'electron';
+import { remote, NativeImage } from 'electron';
 import { hexToHsl, executeAtomCommand } from '../../utils';
+
+const { nativeImage } = remote;
 
 export default class NavigateTabsBtnGroup extends Component {
   private previousIcon: NativeImage;

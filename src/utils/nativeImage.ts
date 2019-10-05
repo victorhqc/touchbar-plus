@@ -1,6 +1,8 @@
-import { nativeImage, NativeImage } from 'electron';
+import { remote, NativeImage } from 'electron';
 import octicons from 'octicons';
 import svg2img from 'svg2img';
+
+const { nativeImage } = remote;
 
 const memoizedOcticons: MemoizedOcticons = {};
 

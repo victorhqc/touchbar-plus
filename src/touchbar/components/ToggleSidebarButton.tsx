@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
-import { nativeImage } from 'electron';
+import { remote } from 'electron';
 import { hexToHsl, executeAtomCommand } from '../../utils';
+
+const { nativeImage } = remote;
 
 const ToggleSidebarButton: FC<Props> = ({ iconColor }) => {
   const sideBarIcon = nativeImage.createFromNamedImage(

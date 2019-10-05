@@ -1,5 +1,3 @@
-'use babel';
-
 import emojis, { Emoji } from 'emojilib';
 import memoize from 'lodash/memoize';
 

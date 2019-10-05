@@ -1,26 +1,30 @@
-'use babel';
-
-import { nativeImage } from 'remote';
+import { nativeImage, NativeImage } from 'electron';
 import octicons from 'octicons';
 import svg2img from 'svg2img';
 
-const memoizedOcticons = {};
+const memoizedOcticons: MemoizedOcticons = {};
 
 const defaultSizes = (height = 120, width = 160) => ({
   width,
   height,
 });
 
-const scaleSizes = (height, width, scaleFactor = 10.0) => ({
+const scaleSizes = (height: number, width: number, scaleFactor = 10.0) => ({
   width: width / scaleFactor,
   height: height / scaleFactor,
   scaleFactor,
-})
+});
 
-export function createOcticonImage({ icon, color, width, height, scaleFactor }) {
-  // Memoized octicon.
-  if (memoizedOcticons[icon]) {
-    return Promise.resolve(memoizedOcticons[icon]);
+export function createOcticonImage({
+  icon,
+  color,
+  width,
+  height,
+  scaleFactor,
+}: CreateOcticonImageOptions): Promise<NativeImage> {
+  const memoized = memoizedOcticons[icon];
+  if (memoized) {
+    return Promise.resolve(memoized);
   }
 
   const octiconWidth = width || octicons[icon].width * 10 * 1.2;
@@ -39,7 +43,7 @@ export function createOcticonImage({ icon, color, width, height, scaleFactor }) 
       }
 
       const image = nativeImage.createFromBuffer(buffer, {
-        ...scaleSizes(octiconHeight, octiconWidth, scaleFactor)
+        ...scaleSizes(octiconHeight, octiconWidth, scaleFactor),
       });
 
       // Memoize result to make parsing a bit faster next time.
@@ -48,4 +52,16 @@ export function createOcticonImage({ icon, color, width, height, scaleFactor }) 
       return resolve(image);
     });
   });
+}
+
+interface CreateOcticonImageOptions {
+  icon: string;
+  color: string;
+  width?: number;
+  height?: number;
+  scaleFactor?: number;
+}
+
+interface MemoizedOcticons {
+  [name: string]: NativeImage | null | undefined;
 }

@@ -1,28 +1,21 @@
-'use babel';
+import React, { FC } from 'react';
+import { nativeImage } from 'electron';
+import { hexToHsl, executeAtomCommand } from '../../utils';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { nativeImage } from 'remote';
-import {
-  hexToHsl,
-  executeAtomCommand,
-} from '../../utils';
-
-const CommandPaletteButton = ({ iconColor, ...props }) => {
+const CommandPaletteButton: FC<Props> = ({ iconColor, ...props }) => {
   const searchIcon = nativeImage.createFromNamedImage(
     'NSTouchBarSearchTemplate',
     hexToHsl(iconColor),
   );
 
   return (
-    <button
+    <touchbar-button
       {...props}
       onClick={() => executeAtomCommand('command-palette:toggle')}
       iconPosition="left"
-      icon={searchIcon}
-    >
+      icon={searchIcon}>
       Command palette
-    </button>
+    </touchbar-button>
   );
 };
 
@@ -30,8 +23,8 @@ CommandPaletteButton.defaultProps = {
   iconColor: '#ffffff',
 };
 
-CommandPaletteButton.propTypes = {
-  iconColor: PropTypes.string,
-};
+interface Props {
+  iconColor?: string;
+}
 
 export default CommandPaletteButton;

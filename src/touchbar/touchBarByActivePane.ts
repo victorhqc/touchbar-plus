@@ -1,6 +1,6 @@
-'use babel';
+import TouchBar from './TouchBar';
 
-export function getTouchBarButtonsForPane(item) {
+export function getTouchBarButtonsForPane(item: Item): object | null {
   const allButtons = JSON.parse(atom.config.get('touchbar-plus.items')) || {};
 
   const itemName = item.constructor.name;
@@ -9,15 +9,10 @@ export function getTouchBarButtonsForPane(item) {
   return buttonsToRender;
 }
 
-let activePane = null;
-
-export function observeAndRenderTouchBarForActivePaneItem(item, touchbar) {
+let activePane: string | null = null;
+export function observeAndRenderTouchBarForActivePaneItem(item: Item | null, touchbar: TouchBar) {
   // Check if it makes sense to update TouchBar
-  if (
-    !item
-    || !item.constructor
-    || activePane === item.constructor.name
-  ) {
+  if (!item || !item.constructor || activePane === item.constructor.name) {
     return null;
   }
   activePane = item.constructor.name;
@@ -30,5 +25,11 @@ export function observeAndRenderTouchBarForActivePaneItem(item, touchbar) {
     return touchbar.destroy();
   }
 
-  return touchbar.init(buttons);
+  return touchbar.init();
+}
+
+export interface Item {
+  constructor: {
+    name: string;
+  };
 }

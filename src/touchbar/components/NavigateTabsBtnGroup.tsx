@@ -1,14 +1,12 @@
-'use babel';
-
 import React, { Fragment, Component } from 'react';
-import { nativeImage } from 'remote';
-import {
-  hexToHsl,
-  executeAtomCommand,
-} from '../../utils';
+import { nativeImage, NativeImage } from 'electron';
+import { hexToHsl, executeAtomCommand } from '../../utils';
 
 export default class NavigateTabsBtnGroup extends Component {
-  constructor(props) {
+  private previousIcon: NativeImage;
+  private nextIcon: NativeImage;
+
+  constructor(props: object) {
     super(props);
 
     const iconColor = '#ffffff';
@@ -27,15 +25,15 @@ export default class NavigateTabsBtnGroup extends Component {
   render() {
     return (
       <Fragment>
-        <button
+        <touchbar-button
           icon={this.previousIcon}
           onClick={() => executeAtomCommand('pane:show-previous-item')}
         />
-        <button
+        <touchbar-button
           icon={this.nextIcon}
           onClick={() => executeAtomCommand('pane:show-next-item')}
         />
       </Fragment>
-    )
+    );
   }
 }

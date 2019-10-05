@@ -1,5 +1,3 @@
-'use babel';
-
 import React, { Fragment } from 'react';
 
 import ToggleSidebarButton from '../components/ToggleSidebarButton';
@@ -14,9 +12,9 @@ const TextEditor = () => (
     <ToggleSidebarButton />
     <NavigateTabsBtnGroup />
     <ToggleGitTabButton />
-    <spacer small />
+    <touchbar-spacer small />
     <CommandPaletteButton />
-    <spacer small />
+    <touchbar-spacer small />
     <FoldCodePopover />
     <SearchFilesPopover />
   </Fragment>

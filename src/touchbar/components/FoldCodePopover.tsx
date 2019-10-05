@@ -1,16 +1,11 @@
-'use babel';
-
 import React, { Component } from 'react';
-import {
-  getActiveElement,
-  createOcticonImage,
-  executeAtomCommand,
-} from '../../utils';
+import { NativeImage } from 'electron';
+import { getActiveElement, createOcticonImage, executeAtomCommand } from '../../utils';
 
-const buildArray = (size) => Array.from(Array(size).keys());
+const buildArray = (size: number) => Array.from(Array(size).keys());
 
-export default class FoldCodePopover extends Component {
-  constructor(props) {
+export default class FoldCodePopover extends Component<object, State> {
+  constructor(props: object) {
     super(props);
 
     this.state = {
@@ -36,31 +31,26 @@ export default class FoldCodePopover extends Component {
       color: whiteColor,
     });
 
-    const [
-      foldIcon,
-      unfoldIcon,
-    ] = await Promise.all([foldPromise, unfoldPromise]);
+    const [foldIcon, unfoldIcon] = await Promise.all([foldPromise, unfoldPromise]);
 
     this.setState({ foldIcon, unfoldIcon });
   }
 
-  foldCode(index) {
+  foldCode(index: number) {
     return () => {
       const activeElement = getActiveElement();
-      atom.commands.dispatch(activeElement, `editor:fold-at-indent-level-${index}`);
+
+      activeElement &&
+        atom.commands.dispatch(activeElement, `editor:fold-at-indent-level-${index}`);
     };
   }
 
   renderFoldButtons() {
     const foldingLevels = 5;
     return buildArray(foldingLevels).map(index => (
-      <button
-        key={`fold-${index}`}
-        onClick={this.foldCode(index + 1)}
-        iconPosition="left"
-      >
+      <touchbar-button key={`fold-${index}`} onClick={this.foldCode(index + 1)} iconPosition="left">
         {`At level ${index + 1}`}
-      </button>
+      </touchbar-button>
     ));
   }
 
@@ -68,18 +58,20 @@ export default class FoldCodePopover extends Component {
     const { foldIcon, unfoldIcon } = this.state;
 
     return (
-      <popover
-        icon={foldIcon}
-      >
-        <button
+      <touchbar-popover icon={foldIcon}>
+        <touchbar-button
           onClick={() => executeAtomCommand('editor:unfold-all')}
           icon={unfoldIcon}
-          iconPosition="left"
-        >
+          iconPosition="left">
           Unfold code
-        </button>
+        </touchbar-button>
         {this.renderFoldButtons()}
-      </popover>
+      </touchbar-popover>
     );
   }
+}
+
+interface State {
+  foldIcon: NativeImage | null;
+  unfoldIcon: NativeImage | null;
 }

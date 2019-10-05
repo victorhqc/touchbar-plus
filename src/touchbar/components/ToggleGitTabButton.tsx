@@ -1,14 +1,9 @@
-'use babel';
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  createOcticonImage,
-  executeAtomCommand,
-} from '../../utils';
+import { NativeImage } from 'electron';
+import { createOcticonImage, executeAtomCommand } from '../../utils';
 
-class ToggleGitTabButton extends Component {
-  constructor(props) {
+class ToggleGitTabButton extends Component<object, State> {
+  constructor(props: object) {
     super(props);
 
     this.state = {
@@ -29,8 +24,7 @@ class ToggleGitTabButton extends Component {
 
   render() {
     return (
-      <button
-        {...this.props}
+      <touchbar-button
         icon={this.state.icon}
         onClick={() => executeAtomCommand('github:toggle-git-tab')}
       />
@@ -38,12 +32,8 @@ class ToggleGitTabButton extends Component {
   }
 }
 
-ToggleGitTabButton.defaultProps = {
-  iconColor: '#ffffff',
-};
-
-ToggleGitTabButton.propTypes = {
-  iconColor: PropTypes.string,
-};
+interface State {
+  icon: NativeImage | null;
+}
 
 export default ToggleGitTabButton;

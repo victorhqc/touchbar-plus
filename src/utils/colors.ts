@@ -1,5 +1,3 @@
-'use babel';
-
 import convert from 'color-convert';
 
 export function hexToHsl(hex = '#ffffff') {

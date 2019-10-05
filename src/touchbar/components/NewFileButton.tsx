@@ -1,14 +1,9 @@
-'use babel';
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  executeAtomCommand,
-  createOcticonImage,
-} from '../../utils';
+import { NativeImage } from 'electron';
+import { executeAtomCommand, createOcticonImage } from '../../utils';
 
-class NewFileButton extends Component {
-  constructor(props) {
+class NewFileButton extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -30,24 +25,23 @@ class NewFileButton extends Component {
     const { icon } = this.state;
 
     return (
-      <button
+      <touchbar-button
         {...props}
         onClick={() => executeAtomCommand('tree-view:add-file')}
         iconPosition="left"
-        icon={icon}
-      >
+        icon={icon}>
         Add file
-      </button>
+      </touchbar-button>
     );
   }
 }
 
-NewFileButton.defaultProps = {
-  iconColor: '#ffffff',
-};
+interface Props {
+  iconColor?: string;
+}
 
-NewFileButton.propTypes = {
-  iconColor: PropTypes.string,
-};
+interface State {
+  icon: NativeImage | null;
+}
 
 export default NewFileButton;

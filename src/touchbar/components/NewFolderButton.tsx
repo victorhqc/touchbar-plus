@@ -1,14 +1,9 @@
-'use babel';
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  executeAtomCommand,
-  createOcticonImage,
-} from '../../utils';
+import { NativeImage } from 'electron';
+import { executeAtomCommand, createOcticonImage } from '../../utils';
 
-class NewFolderButton extends Component {
-  constructor(props) {
+class NewFolderButton extends Component<object, State> {
+  constructor(props: object) {
     super(props);
 
     this.state = {
@@ -26,28 +21,22 @@ class NewFolderButton extends Component {
   }
 
   render() {
-    const { iconColor, ...props } = this.props;
     const { icon } = this.state;
 
     return (
-      <button
-        {...props}
+      <touchbar-button
+        {...this.props}
         onClick={() => executeAtomCommand('tree-view:add-folder')}
         iconPosition="left"
-        icon={icon}
-      >
+        icon={icon}>
         Add folder
-      </button>
+      </touchbar-button>
     );
   }
 }
 
-NewFolderButton.defaultProps = {
-  iconColor: '#ffffff',
-};
-
-NewFolderButton.propTypes = {
-  iconColor: PropTypes.string,
-};
+interface State {
+  icon: NativeImage | null;
+}
 
 export default NewFolderButton;

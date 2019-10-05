@@ -16,7 +16,8 @@
   },
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "atomtest": true
   },
   "settings": {
     "react": {
@@ -24,12 +25,13 @@
     }
   },
   "rules": {
-    "prettier/prettier": 1,
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
     "@typescript-eslint/no-use-before-define": [
       "error",
       { "functions": false, "typedefs": false }
     ],
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   }
 }

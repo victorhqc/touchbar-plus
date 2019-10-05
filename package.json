@@ -23,9 +23,9 @@
     "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
     "dev": "npm run compile -- --watch",
     "lint": "eslint src/**/*.ts",
-    "var": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
-    "rebuild": "npm run var && npm run electron-rebuild",
-    "postinstall": "npm run var && npm run electron-rebuild"
+    "fix:mac": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
+    "rebuild": "npm run electron-rebuild",
+    "postinstall": "npm run electron-rebuild"
   },
   "files": [
     "lib"

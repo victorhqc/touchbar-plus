@@ -24,7 +24,8 @@
     "dev": "npm run compile -- --watch",
     "lint": "eslint src/**/*.ts",
     "fix:mac": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
-    "rebuild": "npm run electron-rebuild"
+    "rebuild": "npm run electron-rebuild",
+    "test": "echo \"TODO\""
   },
   "files": [
     "lib"

@@ -8,31 +8,31 @@ import {
   navigateByActivePane,
   // observeAndRenderTouchBarForActivePaneItem,
 } from './touchbar';
-import defaultButtons from './config-default-buttons';
+// import defaultButtons from './config-default-buttons';
 
 class TouchBarPlus {
   private touchbarPlusView: TouchbarPlusView | null;
   private modalPanel: Panel | null;
   private subscriptions: CompositeDisposable | null;
   private touchbar: TouchBar | null;
-  private activePane: null;
-  private config: Config;
+  // private activePane: null;
+  // private config: Config;
 
   constructor() {
     this.touchbarPlusView = null;
     this.modalPanel = null;
     this.subscriptions = null;
     this.touchbar = null;
-    this.activePane = null;
-
-    this.config = {
-      items: {
-        title: 'TouchBar Items',
-        description: 'Serialized TouchBar Items',
-        type: 'string',
-        default: JSON.stringify(defaultButtons),
-      },
-    };
+    // this.activePane = null;
+    //
+    // this.config = {
+    //   items: {
+    //     title: 'TouchBar Items',
+    //     description: 'Serialized TouchBar Items',
+    //     type: 'string',
+    //     default: JSON.stringify(defaultButtons),
+    //   },
+    // };
   }
 
   activate() {
@@ -139,6 +139,6 @@ export default new TouchBarPlus();
 //   config: Config
 // }
 
-interface Config {
-  items: object;
-}
+// interface Config {
+//   items: object;
+// }

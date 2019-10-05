@@ -20,7 +20,8 @@
     "core:loaded-shell-environment"
   ],
   "scripts": {
-    "compile": "babel src/ --out-dir lib",
+    "compile": "rollup -c",
+    "compile:watch": "rollup -c --watch",
     "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
     "dev": "npm run compile -- --watch",
     "lint": "eslint src/**/*.ts",

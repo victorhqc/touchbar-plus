@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { remote } from 'electron';
 import { hexToHsl, executeAtomCommand } from '../../utils';
 
-const { nativeImage } = remote;
+const { nativeImage } = require('remote');
 
 const CommandPaletteButton: FC<Props> = ({ iconColor, ...props }) => {
   const searchIcon = nativeImage.createFromNamedImage(

@@ -1,8 +1,6 @@
 {
   "name": "touchbar-plus",
   "main": "lib/index.cjs.js",
-  "module": "lib/index.esm.js",
-  "types": "lib/index.d.ts",
   "version": "0.0.0",
   "description": "Better Atom touchbar support for Mac OSX",
   "keywords": [
@@ -26,7 +24,7 @@
     "dev": "npm run compile -- --watch",
     "lint": "eslint src/**/*.ts",
     "var": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
-    "rebuild": "npm run var &&  npm run electron-rebuild",
+    "rebuild": "npm run var && npm run electron-rebuild",
     "postinstall": "npm run var && npm run electron-rebuild"
   },
   "files": [
@@ -42,7 +40,7 @@
     "react": "16.10.2",
     "react-router": "^4.3.1",
     "svg2img": "^0.6.1",
-    "touchbar-electron-renderer": "^0.3.2"
+    "touchbar-electron-renderer": "^0.3.4"
   },
   "devDependencies": {
     "@types/atom": "^1.36.1",
@@ -53,6 +51,7 @@
     "@types/react-router": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
+    "electron": "^3.1.10",
     "electron-rebuild": "^1.8.4",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
@@ -74,6 +73,9 @@
     "semantic-release": "^15.13.24",
     "ts-jest": "^24.0.2",
     "typescript": "^3.6.3"
+  },
+  "peerDependencies": {
+    "electron": "^3.1.10"
   },
   "husky": {
     "hooks": {

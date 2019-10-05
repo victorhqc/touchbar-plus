@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserWindow, remote } from 'electron';
+import { BrowserWindow } from 'electron';
 import { History } from 'history';
 import { ReactTouchBar, TouchBar } from 'touchbar-electron-renderer';
 import Root from './Root';
-const { TouchBar: NativeTouchBar } = remote;
+
+const { TouchBar: NativeTouchBar } = require('remote');
 
 export default function start(history: History) {
   console.time('USING-REACT-RENDERER');

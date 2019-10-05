@@ -1,8 +1,8 @@
 {
   "name": "touchbar-plus",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "version": "0.0.0",
   "description": "Better Atom touchbar support for Mac OSX",
   "keywords": [
@@ -25,8 +25,9 @@
     "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
     "dev": "npm run compile -- --watch",
     "lint": "eslint src/**/*.ts",
-    "rebuild": "npm run electron-rebuild",
-    "postinstall": "npm run electron-rebuild"
+    "var": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
+    "rebuild": "npm run var &&  npm run electron-rebuild",
+    "postinstall": "npm run var && npm run electron-rebuild"
   },
   "files": [
     "lib"
@@ -40,7 +41,7 @@
     "octicons": "0.0.0-882a0ed25",
     "react": "16.10.2",
     "react-router": "^4.3.1",
-    "svg2img": "^0.5.0",
+    "svg2img": "^0.6.1",
     "touchbar-electron-renderer": "^0.3.0"
   },
   "devDependencies": {

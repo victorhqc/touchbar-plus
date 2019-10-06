@@ -1,5 +1,6 @@
 import { History } from 'history';
-import { logger } from '../utils';
+import { logger, getActivePaneEmitter } from '../utils';
+import { ItemPane } from '../@types';
 
 const UNKNOWN = '__unknown__';
 
@@ -27,12 +28,20 @@ export default class ActivePaneManager {
     return true;
   }
 
-  getActiveItem() {
-    if (!this.activeItem) {
-      throw new Error('No active item yet!');
+  getMaybeNullValue<T>(value: T | null): T {
+    if (!value) {
+      throw new Error(`No ${value} found`);
     }
 
-    return this.activeItem;
+    return value;
+  }
+
+  getActiveItem() {
+    return this.getMaybeNullValue(this.activeItem);
+  }
+
+  getRouteName() {
+    return this.getMaybeNullValue(this.routeName);
   }
 
   navigateTo(item: ItemPane | null) {
@@ -42,6 +51,7 @@ export default class ActivePaneManager {
 
     logger.debug(`Navigate to route /${this.routeName}`);
     this.history.push(`/${this.routeName}`);
+    getActivePaneEmitter().emitActivePaneChange(this.getActiveItem(), this.getRouteName());
   }
 
   getRouteNameFromItem(item: ItemPane | null) {
@@ -83,12 +93,3 @@ export default class ActivePaneManager {
     this.routeName = null;
   }
 }
-
-export interface Item {
-  constructor: {
-    name: string;
-  };
-  getElement?: () => HTMLElement;
-}
-
-export type ItemPane = Item & object;

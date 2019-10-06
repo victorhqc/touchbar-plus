@@ -7,6 +7,7 @@ import BlankPage from './views/BlankPage';
 import TextEditor from './views/TextEditor';
 import TreeView from './views/TreeView';
 import Github from './views/Github';
+import SettingsPage from './views/SettingsPage';
 
 const App = () => (
   <Switch>
@@ -14,6 +15,7 @@ const App = () => (
     <Route path="/texteditor" component={TextEditor} />
     <Route path="/treeview" component={TreeView} />
     <Route path="/github-pane" component={Github} />
+    <Route path="/settingsview" component={SettingsPage} />
   </Switch>
 );
 

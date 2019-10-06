@@ -23,12 +23,12 @@ class OcticonButton extends Component<Props, State> {
   }
 
   render() {
-    const { command, children, iconPosition } = this.props;
+    const { command, children, iconPosition, onClick } = this.props;
     const { icon } = this.state;
 
     return (
       <touchbar-button
-        onClick={() => executeAtomCommand(command)}
+        onClick={() => (onClick ? onClick() : executeAtomCommand(command || ''))}
         iconPosition={iconPosition || 'left'}
         icon={icon}>
         {children}
@@ -40,8 +40,9 @@ class OcticonButton extends Component<Props, State> {
 interface Props {
   iconColor?: string;
   iconPosition?: 'left' | 'right' | 'overlay';
+  onClick?: Function;
   octicon: string;
-  command: string;
+  command?: string;
   children?: string | number | null;
 }
 

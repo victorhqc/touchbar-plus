@@ -1,17 +1,37 @@
 {
-  "extends": "airbnb",
-  "env": {
-    "node": true,
-    "browser": true
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
   },
-  "globals": {
-    "atom": true
+  "env": {
+    "es6": true,
+    "node": true,
+    "atomtest": true
   },
   "settings": {
-    "import/core-modules": [
-      "electron",
-      "atom",
-      "remote"
-    ]
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false, "typedefs": false }
+    ],
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   }
 }

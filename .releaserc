@@ -1,0 +1,12 @@
+{
+  "branch": "master",
+  "plugins": [
+    ["@semantic-release/npm", {
+      "tag": "latest"
+    }],
+    ["@semantic-release/git", {
+      "assets": ["src/**/*.{js,ts,tsx}", "package.json"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }]
+  ]
+}

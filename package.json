@@ -1,6 +1,6 @@
 {
   "name": "touchbar-plus",
-  "main": "./lib/touchbar-plus",
+  "main": "lib/index.cjs.js",
   "version": "0.0.0",
   "description": "Better Atom touchbar support for Mac OSX",
   "keywords": [
@@ -14,18 +14,74 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
+  "scripts": {
+    "compile": "rollup -c",
+    "compile:watch": "rollup -c --watch",
+    "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
+    "dev": "npm run compile -- --watch",
+    "lint": "eslint src/**/*.ts",
+    "fix:mac": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
+    "rebuild": "npm run electron-rebuild",
+    "test": "echo \"TODO\""
+  },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "async": "^2.6.1",
     "color-convert": "^2.0.0",
-    "lodash": "^4.17.11",
+    "emojilib": "^2.4.0",
+    "history": "^4.10.1",
+    "lodash": "^4.17.15",
     "octicons": "0.0.0-882a0ed25",
-    "svg2img": "^0.5.0"
+    "react": "16.10.2",
+    "react-router": "^4.3.1",
+    "svg2img": "^0.6.1",
+    "touchbar-electron-renderer": "^0.3.4"
   },
   "devDependencies": {
-    "eslint": "^5.3.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.0",
-    "eslint-plugin-react": "^7.12.4"
+    "@semantic-release/git": "^7.0.16",
+    "@semantic-release/npm": "^5.2.0",
+    "@types/atom": "^1.36.1",
+    "@types/color-convert": "^1.9.0",
+    "@types/history": "^4.7.3",
+    "@types/lodash": "^4.14.141",
+    "@types/react": "^16.8.22",
+    "@types/react-router": "^5.1.1",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "electron": "^3.1.10",
+    "electron-rebuild": "^1.8.4",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.15.1",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.1",
+    "prettier": "^1.18.2",
+    "rollup": "^1.23.0",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-filesize": "^6.2.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-local-resolve": "^1.0.7",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "semantic-release": "^15.13.24",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.6.3"
+  },
+  "peerDependencies": {
+    "electron": "^3.1.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

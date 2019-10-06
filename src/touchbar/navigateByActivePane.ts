@@ -1,4 +1,5 @@
 import { History } from 'history';
+import { logger } from '../utils';
 
 let activePane: string | null = null;
 
@@ -9,7 +10,7 @@ function navigateByActivePane(history: History, item: Item | null) {
   }
   activePane = item.constructor.name;
 
-  console.log('NAVIGATING TO ROUTE', `/${activePane.toLowerCase()}`);
+  logger.debug(`Navigate to route /${activePane.toLowerCase()}`);
   history.push(`/${activePane.toLowerCase()}`);
 }
 

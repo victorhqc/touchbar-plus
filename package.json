@@ -40,7 +40,8 @@
     "react": "16.10.2",
     "react-router": "^4.3.1",
     "svg2img": "^0.6.1",
-    "touchbar-electron-renderer": "^0.3.4"
+    "touchbar-electron-renderer": "^0.3.4",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.16",

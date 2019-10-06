@@ -2,7 +2,7 @@ import { CompositeDisposable, Panel } from 'atom';
 import debounce from 'lodash/debounce';
 import { createMemoryHistory } from 'history';
 import TouchbarPlusView from './touchbar-plus-view';
-import { TouchBar, navigateByActivePane } from './touchbar';
+import { TouchBar, ActivePaneManager } from './touchbar';
 import { logger } from './utils';
 
 class TouchBarPlus {
@@ -10,12 +10,14 @@ class TouchBarPlus {
   private modalPanel: Panel | null;
   private subscriptions: CompositeDisposable | null;
   private touchbar: TouchBar | null;
+  private activePaneManager: ActivePaneManager | null;
 
   constructor() {
     this.touchbarPlusView = null;
     this.modalPanel = null;
     this.subscriptions = null;
     this.touchbar = null;
+    this.activePaneManager = null;
   }
 
   activate() {
@@ -28,9 +30,8 @@ class TouchBarPlus {
     });
 
     const history = createMemoryHistory();
-
+    this.activePaneManager = new ActivePaneManager(history);
     this.touchbar = new TouchBar(history);
-
     this.subscriptions = new CompositeDisposable();
 
     this.subscriptions.add(
@@ -42,14 +43,21 @@ class TouchBarPlus {
     // Register subscription for active PaneItem
     this.subscriptions.add(
       atom.workspace.observeActivePaneItem(
-        debounce(item => navigateByActivePane(history, item), 50, {
-          leading: false,
-          trailing: true,
-        }),
+        debounce(
+          item => {
+            this.getActivePaneManager().navigateTo(item);
+          },
+          10,
+          {
+            leading: false,
+            trailing: true,
+          },
+        ),
       ),
     );
 
     this.subscriptions.add(this.touchbar);
+    this.subscriptions.add(this.activePaneManager);
 
     this.touchbar.init();
   }
@@ -72,36 +80,32 @@ class TouchBarPlus {
     this.getTouchbar().toggle();
   }
 
-  getSubscriptions() {
-    if (!this.subscriptions) {
-      throw new Error('No subscriptions found');
+  getMaybeNullValue<T>(value: T | null): T {
+    if (!value) {
+      throw new Error(`No ${value} found`);
     }
 
-    return this.subscriptions;
+    return value;
+  }
+
+  getSubscriptions() {
+    return this.getMaybeNullValue(this.subscriptions);
   }
 
   getModalPanel() {
-    if (!this.modalPanel) {
-      throw new Error('No modalPanel found');
-    }
-
-    return this.modalPanel;
+    return this.getMaybeNullValue(this.modalPanel);
   }
 
   getTouchBarPlusView() {
-    if (!this.touchbarPlusView) {
-      throw new Error('No touchbarPlusView found');
-    }
-
-    return this.touchbarPlusView;
+    return this.getMaybeNullValue(this.touchbarPlusView);
   }
 
   getTouchbar() {
-    if (!this.touchbar) {
-      throw new Error('No touchbar found');
-    }
+    return this.getMaybeNullValue(this.touchbar);
+  }
 
-    return this.touchbar;
+  getActivePaneManager() {
+    return this.getMaybeNullValue(this.activePaneManager);
   }
 }
 

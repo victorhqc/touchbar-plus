@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { fireEvent } from '@testing-library/dom';
 
 import { ItemPane } from '../../@types';
 import { getActivePaneEmitter, logger } from '../../utils';
@@ -45,7 +44,8 @@ class SettingsPage extends Component {
         return;
       }
 
-      fireEvent.click(targetElement);
+      targetElement.click();
+      // fireEvent.click(targetElement);
     };
   }
 

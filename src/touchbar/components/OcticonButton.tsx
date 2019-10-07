@@ -22,6 +22,19 @@ class OcticonButton extends Component<Props, State> {
     this.setState({ icon });
   }
 
+  async componentDidUpdate(prevProps: Props) {
+    const { octicon, iconColor } = this.props;
+
+    if (prevProps.iconColor === iconColor) return;
+
+    const icon = await createOcticonImage({
+      icon: octicon,
+      color: iconColor || '#ffffff',
+    });
+
+    this.setState({ icon });
+  }
+
   render() {
     const { command, children, iconPosition, onClick } = this.props;
     const { icon } = this.state;

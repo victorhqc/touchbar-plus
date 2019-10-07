@@ -45,15 +45,10 @@ class SettingsPage extends Component {
       }
 
       targetElement.click();
-      // fireEvent.click(targetElement);
     };
   }
 
   render() {
-    if (this.itemElement) {
-      // do nothing;
-    }
-
     return (
       <Fragment>
         <ToggleSidebarButton />

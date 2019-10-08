@@ -4,7 +4,7 @@ import { ItemPane } from '../@types';
 export const ACTIVE_PANE_CHANGE = 'active-pane-change';
 
 export class ActivePaneEmitter extends EventEmitter {
-  emitActivePaneChange(item: ItemPane, routeName: string) {
+  emitActivePaneChange(item: ItemPane | null, routeName: string) {
     this.emit(ACTIVE_PANE_CHANGE, item, routeName);
   }
 

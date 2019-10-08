@@ -30,7 +30,7 @@ export default class ActivePaneManager {
 
   getMaybeNullValue<T>(value: T | null): T {
     if (!value) {
-      throw new Error(`No ${value} found`);
+      throw new Error('Value does not exist');
     }
 
     return value;
@@ -51,7 +51,7 @@ export default class ActivePaneManager {
 
     logger.debug(`Navigate to route /${this.routeName}`);
     this.history.push(`/${this.routeName}`);
-    getActivePaneEmitter().emitActivePaneChange(this.getActiveItem(), this.getRouteName());
+    getActivePaneEmitter().emitActivePaneChange(this.activeItem, this.getRouteName());
   }
 
   getRouteNameFromItem(item: ItemPane | null) {

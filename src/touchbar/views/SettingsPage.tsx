@@ -1,48 +1,25 @@
 import React, { Component, Fragment } from 'react';
 
-import { ItemPane } from '../../@types';
-import { getActivePaneEmitter, logger } from '../../utils';
+import { logger } from '../../utils';
 
 import OcticonButton from '../components/OcticonButton';
+import { withActiveItem, WithActiveItemProps } from '../components/activeItem';
 
-class SettingsPage extends Component<object, State> {
-  private itemElement: HTMLElement | null;
-
-  constructor(props: object) {
+class SettingsPage extends Component<object & WithActiveItemProps, State> {
+  constructor(props: object & WithActiveItemProps) {
     super(props);
 
     this.state = {
       activeItem: '',
     };
 
-    this.itemElement = null;
-
-    this.handleActivePaneChange = this.handleActivePaneChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
-  componentDidMount() {
-    getActivePaneEmitter().onEmitActivePaneChange(this.handleActivePaneChange);
-  }
-
-  componentWillUnmount() {
-    getActivePaneEmitter().removeOnEmitActivePaneChange(this.handleActivePaneChange);
-  }
-
-  handleActivePaneChange(item: ItemPane) {
-    if (!item.element) return;
-
-    this.itemElement = item.element;
-    this.setState({
-      activeItem: this.getActiveItemFromElement(item.element),
-    });
-  }
-
-  getActiveItemFromElement(element: HTMLElement) {
-    const activeItem = element.querySelector<HTMLLIElement>('.panels-menu li.active');
-    if (!activeItem) return '';
-
-    return activeItem.getAttribute('name') || '';
+  static getDerivedStateFromProps(props: WithActiveItemProps) {
+    return {
+      activeItem: props.item ? getActiveItemFromElement(props.item) : '',
+    };
   }
 
   /**
@@ -52,9 +29,9 @@ class SettingsPage extends Component<object, State> {
    */
   handleButtonClick(target: string) {
     return () => {
-      if (!this.itemElement) return;
+      if (!this.props.item) return;
 
-      const targetElement = this.itemElement.querySelector<HTMLLIElement>(target);
+      const targetElement = this.props.item.querySelector<HTMLLIElement>(target);
       if (!targetElement) {
         logger.warning(`Could not find settings element: ${target}`);
         return;
@@ -133,8 +110,15 @@ class SettingsPage extends Component<object, State> {
   }
 }
 
-export default SettingsPage;
+export default withActiveItem(SettingsPage);
 
 interface State {
   activeItem: string;
+}
+
+function getActiveItemFromElement(element: HTMLElement) {
+  const activeItem = element.querySelector<HTMLLIElement>('.panels-menu li.active');
+  if (!activeItem) return '';
+
+  return activeItem.getAttribute('name') || '';
 }

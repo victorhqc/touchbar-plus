@@ -1,66 +1,34 @@
-import React, { Component } from 'react';
-import { NativeImage } from 'electron';
-import { executeAtomCommand, createOcticonImage } from '../../utils';
+import React, { FC } from 'react';
+import { executeAtomCommand } from '../../utils';
+import Octicon, { WithOcticonProps } from './Octicon';
 
-class OcticonButton extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      icon: null,
-    };
-  }
-
-  async componentDidMount() {
-    const { octicon, iconColor } = this.props;
-
-    const icon = await createOcticonImage({
-      icon: octicon,
-      color: iconColor || '#ffffff',
-    });
-
-    this.setState({ icon });
-  }
-
-  async componentDidUpdate(prevProps: Props) {
-    const { octicon, iconColor } = this.props;
-
-    if (prevProps.iconColor === iconColor) return;
-
-    const icon = await createOcticonImage({
-      icon: octicon,
-      color: iconColor || '#ffffff',
-    });
-
-    this.setState({ icon });
-  }
-
-  render() {
-    const { command, children, iconPosition, onClick } = this.props;
-    const { icon } = this.state;
-
-    return (
+const OcticonButton: FC<Props> = ({
+  command,
+  children,
+  icon,
+  iconPosition,
+  iconColor,
+  onClick,
+}) => (
+  <Octicon icon={icon} iconColor={iconColor}>
+    {({ octicon }: WithOcticonProps) => (
       <touchbar-button
         onClick={() => (onClick ? onClick() : executeAtomCommand(command || ''))}
         iconPosition={iconPosition || 'left'}
-        icon={icon}>
+        icon={octicon}>
         {children}
       </touchbar-button>
-    );
-  }
-}
+    )}
+  </Octicon>
+);
 
 interface Props {
   iconColor?: string;
   iconPosition?: 'left' | 'right' | 'overlay';
   onClick?: Function;
-  octicon: string;
+  icon: string;
   command?: string;
   children?: string | number | null;
-}
-
-interface State {
-  icon: NativeImage | null;
 }
 
 export default OcticonButton;

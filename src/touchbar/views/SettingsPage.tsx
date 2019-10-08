@@ -59,49 +59,49 @@ class SettingsPage extends Component<object & WithActiveItemProps, State> {
       <Fragment>
         <OcticonButton
           iconPosition="overlay"
-          octicon="settings"
+          icon="settings"
           iconColor={this.getIconColor('Core')}
           onClick={this.handleButtonClick('.panels-menu li[name="Core"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="code"
+          icon="code"
           iconColor={this.getIconColor('Editor')}
           onClick={this.handleButtonClick('.panels-menu li[name="Editor"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="link"
+          icon="link"
           iconColor={this.getIconColor('URI Handling')}
           onClick={this.handleButtonClick('.panels-menu li[name="URI Handling"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="keyboard"
+          icon="keyboard"
           iconColor={this.getIconColor('Keybindings')}
           onClick={this.handleButtonClick('.panels-menu li[name="Keybindings"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="package"
+          icon="package"
           iconColor={this.getIconColor('Packages')}
           onClick={this.handleButtonClick('.panels-menu li[name="Packages"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="paintcan"
+          icon="paintcan"
           iconColor={this.getIconColor('Themes')}
           onClick={this.handleButtonClick('.panels-menu li[name="Themes"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="cloud-download"
+          icon="cloud-download"
           iconColor={this.getIconColor('Updates')}
           onClick={this.handleButtonClick('.panels-menu li[name="Updates"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
-          octicon="plus"
+          icon="plus"
           iconColor={this.getIconColor('Install')}
           onClick={this.handleButtonClick('.panels-menu li[name="Install"] a')}
         />

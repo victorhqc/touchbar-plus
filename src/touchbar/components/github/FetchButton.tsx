@@ -3,7 +3,7 @@ import OcticonButton from '../OcticonButton';
 
 class FetchButton extends Component {
   render() {
-    return <OcticonButton octicon="sync" command="github:fetch" iconPosition="overlay" />;
+    return <OcticonButton icon="sync" command="github:fetch" iconPosition="overlay" />;
   }
 }
 

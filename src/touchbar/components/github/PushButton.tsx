@@ -3,7 +3,7 @@ import OcticonButton from '../OcticonButton';
 
 class FetchButton extends Component {
   render() {
-    return <OcticonButton octicon="repo-push" command="github:push" iconPosition="overlay" />;
+    return <OcticonButton icon="repo-push" command="github:push" iconPosition="overlay" />;
   }
 }
 

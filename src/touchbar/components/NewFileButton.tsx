@@ -4,7 +4,7 @@ import OcticonButton from './OcticonButton';
 class NewFileButton extends Component {
   render() {
     return (
-      <OcticonButton command="tree-view:add-file" octicon="file">
+      <OcticonButton command="tree-view:add-file" icon="file">
         Add file
       </OcticonButton>
     );

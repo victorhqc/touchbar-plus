@@ -6,15 +6,17 @@ import ToggleGitTabButton from '../components/ToggleGitTabButton';
 import FetchButton from '../components/github/FetchButton';
 import PullButton from '../components/github/PullButton';
 import PushButton from '../components/github/PushButton';
+import OcticonButton from '../components/OcticonButton';
 
 const Github = () => (
   <Fragment>
     <ToggleSidebarButton />
     <ToggleGitTabButton />
-    <FetchButton />
+    <OcticonButton iconPosition="overlay" icon="play" command="github:dive" />
     <touchbar-spacer small />
     <CommandPaletteButton />
     <touchbar-spacer small />
+    <FetchButton />
     <PullButton />
     <PushButton />
   </Fragment>

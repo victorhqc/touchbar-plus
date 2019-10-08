@@ -28,9 +28,9 @@ export class ActiveItem extends Component<Props, State> {
   }
 
   handleActivePaneChange(item: ItemPane, route: string) {
-    if (!item.element) return;
+    if (route === this.state.route) return;
 
-    this.item = item.element;
+    this.item = item.element || null;
     this.setState({
       route,
     });

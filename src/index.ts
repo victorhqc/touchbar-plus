@@ -21,7 +21,7 @@ class TouchBarPlus {
   }
 
   activate() {
-    logger.debug('Activating');
+    logger.debug('Activate');
 
     this.touchbarPlusView = new TouchbarPlusView();
     this.modalPanel = atom.workspace.addModalPanel({

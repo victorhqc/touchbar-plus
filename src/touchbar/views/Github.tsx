@@ -3,22 +3,19 @@ import React, { Fragment } from 'react';
 import ToggleSidebarButton from '../components/ToggleSidebarButton';
 import CommandPaletteButton from '../components/CommandPaletteButton';
 import ToggleGitTabButton from '../components/ToggleGitTabButton';
-import FetchButton from '../components/github/FetchButton';
-import PullButton from '../components/github/PullButton';
-import PushButton from '../components/github/PushButton';
 import OcticonButton from '../components/OcticonButton';
 
 const Github = () => (
   <Fragment>
     <ToggleSidebarButton />
+    <OcticonButton iconPosition="overlay" icon="mark-github" command="github:toggle-github-tab" />
     <ToggleGitTabButton />
-    <OcticonButton iconPosition="overlay" icon="play" command="github:dive" />
     <touchbar-spacer small />
     <CommandPaletteButton />
     <touchbar-spacer small />
-    <FetchButton />
-    <PullButton />
-    <PushButton />
+    <OcticonButton icon="sync" command="github:fetch" iconPosition="overlay" />
+    <OcticonButton icon="arrow-down" command="github:pull" iconPosition="overlay" />
+    <OcticonButton icon="arrow-up" command="github:push" iconPosition="overlay" />
   </Fragment>
 );
 

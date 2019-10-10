@@ -1,11 +1,11 @@
 import React, { Component, ReactNode } from 'react';
 import isFunction from 'lodash/isFunction';
 
-import { ItemPane } from '../../../@types';
-import { getActivePaneEmitter } from '../../../utils';
+import { PaneItem } from '../../../@types';
+import { gePaneItemName } from '../../../utils';
 
 export class ActiveItem extends Component<Props, State> {
-  private item: HTMLElement | null;
+  private item: PaneItem | null;
 
   constructor(props: Props) {
     super(props);
@@ -15,32 +15,11 @@ export class ActiveItem extends Component<Props, State> {
     };
 
     this.item = null;
-
-    this.handleActivePaneChange = this.handleActivePaneChange.bind(this);
   }
 
   componentDidMount() {
-    getActivePaneEmitter().onEmitActivePaneChange(this.handleActivePaneChange);
-  }
-
-  componentWillUnmount() {
-    getActivePaneEmitter().removeOnEmitActivePaneChange(this.handleActivePaneChange);
-  }
-
-  handleActivePaneChange(item: ItemPane, route: string) {
-    if (route === this.state.route) return;
-
-    this.item = item.element || null;
-    this.setState({
-      route,
-    });
-  }
-
-  getActiveItemFromElement(element: HTMLElement) {
-    const activeItem = element.querySelector<HTMLLIElement>('.panels-menu li.active');
-    if (!activeItem) return '';
-
-    return activeItem.getAttribute('name') || '';
+    this.item = atom.workspace.getActivePane().getActiveItem();
+    this.setState({ route: gePaneItemName(this.item) });
   }
 
   render() {
@@ -59,7 +38,7 @@ type WithActiveItemFunc = (args: WithActiveItemProps) => ReactNode | ReactNode[]
 
 export interface WithActiveItemProps {
   route: string;
-  item: HTMLElement | null;
+  item: PaneItem | null;
 }
 
 interface Props {

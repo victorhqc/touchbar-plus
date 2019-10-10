@@ -6,4 +6,4 @@ export interface Item {
   element?: HTMLElement;
 }
 
-export type ItemPane = Item & object;
+export type PaneItem = Item & object;

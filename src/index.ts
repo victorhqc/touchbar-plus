@@ -2,22 +2,20 @@ import { CompositeDisposable, Panel } from 'atom';
 import debounce from 'lodash/debounce';
 import { createMemoryHistory } from 'history';
 import TouchbarPlusView from './touchbar-plus-view';
-import { TouchBar, ActivePaneManager } from './touchbar';
-import { logger } from './utils';
+import { TouchBar } from './touchbar';
+import { logger, gePaneItemName } from './utils';
 
 class TouchBarPlus {
   private touchbarPlusView: TouchbarPlusView | null;
   private modalPanel: Panel | null;
   private subscriptions: CompositeDisposable | null;
   private touchbar: TouchBar | null;
-  private activePaneManager: ActivePaneManager | null;
 
   constructor() {
     this.touchbarPlusView = null;
     this.modalPanel = null;
     this.subscriptions = null;
     this.touchbar = null;
-    this.activePaneManager = null;
   }
 
   activate() {
@@ -30,7 +28,6 @@ class TouchBarPlus {
     });
 
     const history = createMemoryHistory();
-    this.activePaneManager = new ActivePaneManager(history);
     this.touchbar = new TouchBar(history);
     this.subscriptions = new CompositeDisposable();
 
@@ -45,7 +42,9 @@ class TouchBarPlus {
       atom.workspace.observeActivePaneItem(
         debounce(
           item => {
-            this.getActivePaneManager().navigateTo(item);
+            const name = gePaneItemName(item);
+            logger.debug(`Navigate to route /${name}`);
+            history.push(`/${name}`);
           },
           10,
           {
@@ -57,7 +56,6 @@ class TouchBarPlus {
     );
 
     this.subscriptions.add(this.touchbar);
-    this.subscriptions.add(this.activePaneManager);
 
     this.touchbar.init();
   }
@@ -102,10 +100,6 @@ class TouchBarPlus {
 
   getTouchbar() {
     return this.getMaybeNullValue(this.touchbar);
-  }
-
-  getActivePaneManager() {
-    return this.getMaybeNullValue(this.activePaneManager);
   }
 }
 

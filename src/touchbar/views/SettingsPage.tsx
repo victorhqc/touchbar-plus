@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { logger } from '../../utils';
+import { logger, getElementFromPaneItem } from '../../utils';
 
 import OcticonButton from '../components/OcticonButton';
 import { withActiveItem, WithActiveItemProps } from '../components/activeItem';
@@ -18,7 +18,7 @@ class SettingsPage extends Component<object & WithActiveItemProps, State> {
 
   static getDerivedStateFromProps(props: WithActiveItemProps) {
     return {
-      activeItem: props.item ? getActiveItemFromElement(props.item) : '',
+      activeItem: props.item ? getActiveSettingsPage(props.item) : '',
     };
   }
 
@@ -29,9 +29,10 @@ class SettingsPage extends Component<object & WithActiveItemProps, State> {
    */
   handleButtonClick(target: string) {
     return () => {
-      if (!this.props.item) return;
+      const element = getElementFromPaneItem(this.props.item);
+      if (!element) return;
 
-      const targetElement = this.props.item.querySelector<HTMLLIElement>(target);
+      const targetElement = element.querySelector<HTMLLIElement>(target);
       if (!targetElement) {
         logger.warning(`Could not find settings element: ${target}`);
         return;
@@ -116,7 +117,12 @@ interface State {
   activeItem: string;
 }
 
-function getActiveItemFromElement(element: HTMLElement) {
+function getActiveSettingsPage(item: object) {
+  const element = getElementFromPaneItem(item);
+  if (!element) {
+    return '';
+  }
+
   const activeItem = element.querySelector<HTMLLIElement>('.panels-menu li.active');
   if (!activeItem) return '';
 

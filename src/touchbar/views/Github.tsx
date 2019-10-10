@@ -8,12 +8,12 @@ import OcticonButton from '../components/OcticonButton';
 const Github = () => (
   <Fragment>
     <ToggleSidebarButton />
+    <OcticonButton icon="sync" command="github:fetch" iconPosition="overlay" />
     <OcticonButton iconPosition="overlay" icon="mark-github" command="github:toggle-github-tab" />
     <ToggleGitTabButton />
     <touchbar-spacer small />
     <CommandPaletteButton />
     <touchbar-spacer small />
-    <OcticonButton icon="sync" command="github:fetch" iconPosition="overlay" />
     <OcticonButton icon="arrow-down" command="github:pull" iconPosition="overlay" />
     <OcticonButton icon="arrow-up" command="github:push" iconPosition="overlay" />
   </Fragment>

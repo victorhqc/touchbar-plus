@@ -1,25 +1,15 @@
 import React, { Component, Fragment } from 'react';
 
-import { logger, getElementFromPaneItem } from '../../utils';
+import { logger } from '../../utils';
 
 import OcticonButton from '../components/OcticonButton';
 import { withActiveItem, WithActiveItemProps } from '../components/activeItem';
 
-class SettingsPage extends Component<object & WithActiveItemProps, State> {
+class SettingsPage extends Component<object & WithActiveItemProps> {
   constructor(props: object & WithActiveItemProps) {
     super(props);
 
-    this.state = {
-      activeItem: '',
-    };
-
     this.handleButtonClick = this.handleButtonClick.bind(this);
-  }
-
-  static getDerivedStateFromProps(props: WithActiveItemProps) {
-    return {
-      activeItem: props.item ? getActiveSettingsPage(props.item) : '',
-    };
   }
 
   /**
@@ -29,8 +19,19 @@ class SettingsPage extends Component<object & WithActiveItemProps, State> {
    */
   handleButtonClick(target: string) {
     return () => {
-      const element = getElementFromPaneItem(this.props.item);
-      if (!element) return;
+      if (!this.props.item) {
+        logger.warning('Item does not exist');
+
+        return;
+      }
+
+      const { element } = this.props.item;
+
+      if (!element) {
+        logger.warning('Item does not have an element');
+
+        return;
+      }
 
       const targetElement = element.querySelector<HTMLLIElement>(target);
       if (!targetElement) {
@@ -49,61 +50,47 @@ class SettingsPage extends Component<object & WithActiveItemProps, State> {
     };
   }
 
-  getIconColor(name: string) {
-    const { activeItem } = this.state;
-
-    return activeItem === name ? '#f2a4af' : '#ffffff';
-  }
-
   render() {
     return (
       <Fragment>
         <OcticonButton
           iconPosition="overlay"
           icon="settings"
-          iconColor={this.getIconColor('Core')}
           onClick={this.handleButtonClick('.panels-menu li[name="Core"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="code"
-          iconColor={this.getIconColor('Editor')}
           onClick={this.handleButtonClick('.panels-menu li[name="Editor"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="link"
-          iconColor={this.getIconColor('URI Handling')}
           onClick={this.handleButtonClick('.panels-menu li[name="URI Handling"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="keyboard"
-          iconColor={this.getIconColor('Keybindings')}
           onClick={this.handleButtonClick('.panels-menu li[name="Keybindings"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="package"
-          iconColor={this.getIconColor('Packages')}
           onClick={this.handleButtonClick('.panels-menu li[name="Packages"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="paintcan"
-          iconColor={this.getIconColor('Themes')}
           onClick={this.handleButtonClick('.panels-menu li[name="Themes"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="cloud-download"
-          iconColor={this.getIconColor('Updates')}
           onClick={this.handleButtonClick('.panels-menu li[name="Updates"] a')}
         />
         <OcticonButton
           iconPosition="overlay"
           icon="plus"
-          iconColor={this.getIconColor('Install')}
           onClick={this.handleButtonClick('.panels-menu li[name="Install"] a')}
         />
       </Fragment>
@@ -112,19 +99,3 @@ class SettingsPage extends Component<object & WithActiveItemProps, State> {
 }
 
 export default withActiveItem(SettingsPage);
-
-interface State {
-  activeItem: string;
-}
-
-function getActiveSettingsPage(item: object) {
-  const element = getElementFromPaneItem(item);
-  if (!element) {
-    return '';
-  }
-
-  const activeItem = element.querySelector<HTMLLIElement>('.panels-menu li.active');
-  if (!activeItem) return '';
-
-  return activeItem.getAttribute('name') || '';
-}

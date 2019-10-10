@@ -1,8 +1,7 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import OcticonButton from './OcticonButton';
-import { withActiveItem, WithActiveItemProps } from './activeItem';
 
-class ToggleGitTabButton extends Component<Props> {
+class ToggleGitTabButton extends Component {
   render() {
     return (
       <OcticonButton command="github:toggle-git-tab" icon="git-commit" iconPosition="overlay" />
@@ -10,8 +9,4 @@ class ToggleGitTabButton extends Component<Props> {
   }
 }
 
-export default withActiveItem(ToggleGitTabButton);
-
-interface Props extends WithActiveItemProps {
-  children?: ReactNode;
-}
+export default ToggleGitTabButton;

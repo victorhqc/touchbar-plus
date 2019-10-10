@@ -8,8 +8,8 @@ import OcticonButton from '../components/OcticonButton';
 const TreeView = () => (
   <Fragment>
     <ToggleSidebarButton />
-    <OcticonButton command="tree-view:add-file" icon="file" />
-    <OcticonButton command="tree-view:add-folder" icon="file-directory" />
+    <OcticonButton command="tree-view:add-file" icon="file" iconPosition="overlay" />
+    <OcticonButton command="tree-view:add-folder" icon="file-directory" iconPosition="overlay" />
     <ToggleGitTabButton />
     <touchbar-spacer small />
     <CommandPaletteButton />

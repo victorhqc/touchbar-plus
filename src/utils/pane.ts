@@ -1,7 +1,8 @@
 import logger from './logger';
 import { PaneItem } from '../@types';
 
-const UNKNOWN = '__unknown__';
+export const UNKNOWN = '__unknown__';
+export const GITHUB_PANE = 'github-pane';
 
 export function gePaneItemName(item: PaneItem | null) {
   if (!item) {
@@ -35,7 +36,7 @@ function getNameFromElement(element: HTMLElement) {
   logger.debug(`classList, ${JSON.stringify(classList)}`);
 
   if (classList.contains('github-Git-root')) {
-    return 'github-pane';
+    return GITHUB_PANE;
   }
 
   return UNKNOWN;

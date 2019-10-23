@@ -1,7 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-// import RendererDemo from './RendererDemo';
-// import DemoReel from './DemoReel';
 
 import BlankPage from './views/BlankPage';
 import TextEditor from './views/TextEditor';
@@ -18,7 +16,5 @@ const App = () => (
     <Route path="/settingsview" component={SettingsPage} />
   </Switch>
 );
-
-// const App = () => <RendererDemo />;
 
 export default App;

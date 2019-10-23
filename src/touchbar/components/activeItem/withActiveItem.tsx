@@ -1,9 +1,7 @@
 import React, { Component, ComponentType } from 'react';
 
+import { Optionalize } from '../../../@types';
 import { ActiveItem, WithActiveItemProps } from './ActiveItem';
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-type Optionalize<T extends K, K> = Omit<T, keyof K>;
 
 export function withActiveItem<P extends WithActiveItemProps = WithActiveItemProps>(
   WrappedComponent: ComponentType<P>,

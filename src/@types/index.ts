@@ -7,3 +7,18 @@ export interface Item {
 }
 
 export type PaneItem = Item & object;
+
+export interface TreeView {
+  selectedPaths: () => TreeViewEntry[];
+  entryForpath: (entryPath: string) => TreeViewEntry;
+}
+
+export type TreeViewEntry = string;
+
+export interface Disposable {
+  isDisposable: () => boolean;
+  dispose: () => void;
+}
+
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+export type Optionalize<T extends K, K> = Omit<T, keyof K>;

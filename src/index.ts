@@ -4,8 +4,6 @@ import { createMemoryHistory } from 'history';
 import TouchbarPlusView from './touchbar-plus-view';
 import { TouchBar } from './touchbar';
 import { logger, gePaneItemName } from './utils';
-import treeView from './helpers/treeViewSingleton';
-import { TreeView } from './@types';
 
 class TouchBarPlus {
   private touchbarPlusView: TouchbarPlusView | null;
@@ -68,10 +66,6 @@ class TouchBarPlus {
     this.getModalPanel().destroy();
     this.getSubscriptions().dispose();
     this.getTouchBarPlusView().destroy();
-  }
-
-  consumeTreeView(tree: TreeView) {
-    treeView.setTreeView(tree);
   }
 
   serialize() {

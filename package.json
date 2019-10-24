@@ -17,13 +17,6 @@
   "activationHooks": [
     "core:loaded-shell-environment"
   ],
-  "consumedServices": {
-    "tree-view": {
-      "versions": {
-        "^1.0.0": "consumeTreeView"
-      }
-    }
-  },
   "scripts": {
     "compile": "rollup -c",
     "compile:watch": "rollup -c --watch",

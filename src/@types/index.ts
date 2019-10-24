@@ -8,13 +8,6 @@ export interface Item {
 
 export type PaneItem = Item & object;
 
-export interface TreeView {
-  selectedPaths: () => TreeViewEntry[];
-  entryForpath: (entryPath: string) => TreeViewEntry;
-}
-
-export type TreeViewEntry = string;
-
 export interface Disposable {
   isDisposable: () => boolean;
   dispose: () => void;

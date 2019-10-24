@@ -27,7 +27,7 @@
   "scripts": {
     "compile": "rollup -c",
     "compile:watch": "rollup -c --watch",
-    "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
+    "electron-rebuild": "electron-rebuild --version 4.2.7 --which-module canvas --force",
     "start": "npm run compile -- --watch",
     "lint": "eslint src/**/*.ts",
     "fix:mac": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
@@ -61,7 +61,7 @@
     "@types/react-router": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
-    "electron": "^3.1.10",
+    "electron": "^4.2.7",
     "electron-rebuild": "^1.8.4",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
@@ -83,9 +83,6 @@
     "semantic-release": "^15.13.24",
     "ts-jest": "^24.0.2",
     "typescript": "^3.6.3"
-  },
-  "peerDependencies": {
-    "electron": "^3.1.10"
   },
   "husky": {
     "hooks": {

@@ -1,4 +1,5 @@
 import { ViewModel } from 'atom';
+import start from './config/start';
 
 export default class TouchbarPlusView implements ViewModel {
   private element: Element;
@@ -8,11 +9,7 @@ export default class TouchbarPlusView implements ViewModel {
     this.element = document.createElement('div');
     this.element.classList.add('touchbar-plus');
 
-    // Create message element
-    const message = document.createElement('div');
-    message.textContent = "The TouchbarPlus package is Alive! It's ALIVE!";
-    message.classList.add('message');
-    this.element.appendChild(message);
+    start(this.element);
   }
 
   // Returns an object that can be retrieved when package is activated

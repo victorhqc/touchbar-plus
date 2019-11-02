@@ -1,4 +1,6 @@
-export default class TouchbarPlusView {
+import { ViewModel } from 'atom';
+
+export default class TouchbarPlusView implements ViewModel {
   private element: Element;
 
   constructor() {
@@ -23,7 +25,11 @@ export default class TouchbarPlusView {
     this.element.remove();
   }
 
-  getElement() {
+  getTitle(): string {
+    return 'TouchBar Plus View';
+  }
+
+  getElement(): Element {
     return this.element;
   }
 }

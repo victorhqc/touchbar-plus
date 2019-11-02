@@ -1,19 +1,17 @@
-import { CompositeDisposable, Panel } from 'atom';
+import { CompositeDisposable, Disposable } from 'atom';
 import debounce from 'lodash/debounce';
 import { createMemoryHistory } from 'history';
 import TouchbarPlusView from './touchbar-plus-view';
 import { TouchBar } from './touchbar';
-import { logger, gePaneItemName } from './utils';
+import { logger, gePaneItemName, getMaybeNullValue } from './utils';
 
 class TouchBarPlus {
   private touchbarPlusView: TouchbarPlusView | null;
-  private modalPanel: Panel | null;
   private subscriptions: CompositeDisposable | null;
   private touchbar: TouchBar | null;
 
   constructor() {
     this.touchbarPlusView = null;
-    this.modalPanel = null;
     this.subscriptions = null;
     this.touchbar = null;
   }
@@ -22,10 +20,6 @@ class TouchBarPlus {
     logger.debug('Activate');
 
     this.touchbarPlusView = new TouchbarPlusView();
-    this.modalPanel = atom.workspace.addModalPanel({
-      item: this.getTouchBarPlusView().getElement(),
-      visible: false,
-    });
 
     const history = createMemoryHistory();
     this.touchbar = new TouchBar(history);
@@ -37,7 +31,22 @@ class TouchBarPlus {
       }),
     );
 
-    // Register subscription for active PaneItem
+    this.subscriptions.add(
+      atom.commands.add('atom-workspace', {
+        'touchbar-plus:config': () => this.config(),
+      }),
+    );
+
+    this.subscriptions.add(
+      atom.workspace.addOpener(uri => {
+        if (uri !== 'atom://touchbar-plus-view') {
+          return;
+        }
+
+        return new TouchbarPlusView();
+      }),
+    );
+
     this.subscriptions.add(
       atom.workspace.observeActivePaneItem(
         debounce(
@@ -55,17 +64,24 @@ class TouchBarPlus {
       ),
     );
 
-    this.subscriptions.add(this.touchbar);
+    this.subscriptions.add(
+      new Disposable(() => {
+        atom.workspace.getPaneItems().forEach(item => {
+          if (item instanceof TouchbarPlusView) {
+            item.destroy();
+          }
+        });
+      }),
+    );
 
+    this.subscriptions.add(this.touchbar);
     this.touchbar.init();
   }
 
   deactivate() {
     logger.debug('Deactivating');
 
-    this.getModalPanel().destroy();
     this.getSubscriptions().dispose();
-    this.getTouchBarPlusView().destroy();
   }
 
   serialize() {
@@ -78,28 +94,20 @@ class TouchBarPlus {
     this.getTouchbar().toggle();
   }
 
-  getMaybeNullValue<T>(value: T | null): T {
-    if (!value) {
-      throw new Error(`No ${value} found`);
-    }
-
-    return value;
+  config() {
+    atom.workspace.open('atom://touchbar-plus-view');
   }
 
   getSubscriptions() {
-    return this.getMaybeNullValue(this.subscriptions);
-  }
-
-  getModalPanel() {
-    return this.getMaybeNullValue(this.modalPanel);
+    return getMaybeNullValue(this.subscriptions);
   }
 
   getTouchBarPlusView() {
-    return this.getMaybeNullValue(this.touchbarPlusView);
+    return getMaybeNullValue(this.touchbarPlusView);
   }
 
   getTouchbar() {
-    return this.getMaybeNullValue(this.touchbar);
+    return getMaybeNullValue(this.touchbar);
   }
 }
 

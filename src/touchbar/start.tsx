@@ -11,10 +11,8 @@ export default function start(history: History) {
   logger.debug('Boot touchbar renderer');
   const atomWindow = atom.getCurrentWindow() as BrowserWindow;
 
-  ReactTouchBar.render(
-    <Root history={history} />,
-    new TouchBar(atomWindow, NativeTouchBar),
-    () => {},
-  );
+  ReactTouchBar.render(<Root history={history} />, new TouchBar(atomWindow, NativeTouchBar), () => {
+    // Empty function
+  });
   logger.debug('Boot touchbar renderer finished');
 }

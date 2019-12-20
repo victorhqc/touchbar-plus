@@ -7,12 +7,11 @@ const logger = createLogger({
   level,
   format: combine(timestamp(), splat(), errors(), prettyPrint()),
   defaultMeta: { service: 'touchbar-plus' },
-  transports: [],
+  transports: [new transports.File({ filename: 'touchbar-plus.error.log', level: 'error' })],
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new transports.File({ filename: 'error.log', level: 'error' }));
-  logger.add(new transports.File({ filename: 'combined.log' }));
+if (process.env.DEBUG === '1' || process.env.DEBUG === 'true') {
+  logger.add(new transports.File({ filename: 'touchbar-plus.combined.log' }));
   logger.add(new transports.Console());
 }
 

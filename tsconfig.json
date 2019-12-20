@@ -11,9 +11,9 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es5"
+    "target": "ES2015"
   },
   "include": [
     "src/**/*"

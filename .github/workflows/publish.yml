@@ -33,7 +33,7 @@ jobs:
         CI: true
     - name: publish new version
       run: |
-        npm run compile
+        npm run build
         npx semantic-release@15
       env:
         CI: true

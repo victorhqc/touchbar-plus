@@ -24,7 +24,7 @@ export function createOcticonImage({
   height,
   scaleFactor,
 }: CreateOcticonImageOptions): Promise<NativeImage> {
-  const memoized = memoizedOcticons[icon];
+  const memoized = memoizedOcticons[`${icon}-${color}`];
   if (memoized) {
     return Promise.resolve(memoized);
   }
@@ -49,7 +49,7 @@ export function createOcticonImage({
       });
 
       // Memoize result to make parsing a bit faster next time.
-      memoizedOcticons[icon] = image;
+      memoizedOcticons[`${icon}-${color}`] = image;
 
       return resolve(image);
     });

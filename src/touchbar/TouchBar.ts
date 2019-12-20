@@ -1,18 +1,25 @@
-import start from './start';
 import { History } from 'history';
+import { Disposable } from '../@types';
+import start from './start';
 
 enum Status {
   ACTIVE = 'active',
   INACTIVE = 'inactive',
 }
 
-class TouchBar {
+class TouchBar implements Disposable {
   private history: History | null;
   private status: Status;
 
   constructor(history: History) {
-    this.history = history;
+    this.history = null;
     this.status = Status.INACTIVE;
+
+    this.setHistory(history);
+  }
+
+  setHistory(history: History) {
+    this.history = history;
   }
 
   isDisposable() {
@@ -41,7 +48,6 @@ class TouchBar {
     }
 
     atomWindow.setTouchBar(null);
-    this.history = null;
   }
 
   toggle() {

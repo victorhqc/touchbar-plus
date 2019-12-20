@@ -1,6 +1,6 @@
 {
   "name": "touchbar-plus",
-  "main": "lib/index.cjs.js",
+  "main": "lib/index.js",
   "version": "0.0.0",
   "description": "Better Atom touchbar support for Mac OSX",
   "keywords": [
@@ -18,14 +18,15 @@
     "core:loaded-shell-environment"
   ],
   "scripts": {
-    "compile": "rollup -c",
-    "compile:watch": "rollup -c --watch",
-    "electron-rebuild": "electron-rebuild --version 3.1.10 --which-module canvas --force",
-    "dev": "npm run compile -- --watch",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "electron-rebuild": "electron-rebuild --version 4.2.7 --which-module canvas --force",
+    "start": "npm run build -- --watch",
     "lint": "eslint src/**/*.ts",
     "fix:mac": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
     "rebuild": "npm run electron-rebuild",
-    "test": "echo \"TODO\""
+    "test": "echo \"TODO\"",
+    "postinstall": "./postinstall.sh"
   },
   "files": [
     "lib"
@@ -38,46 +39,45 @@
     "lodash": "^4.17.15",
     "octicons": "0.0.0-882a0ed25",
     "react": "16.10.2",
-    "react-router": "^4.3.1",
+    "react-dom": "^16.11.0",
+    "react-router": "^5.1.2",
     "svg2img": "^0.6.1",
-    "touchbar-electron-renderer": "^0.3.4"
+    "touchbar-electron-renderer": "^0.3.4",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@semantic-release/git": "^7.0.16",
-    "@semantic-release/npm": "^5.2.0",
+    "@semantic-release/git": "^7.0.18",
+    "@semantic-release/npm": "^5.3.4",
     "@types/atom": "^1.36.1",
     "@types/color-convert": "^1.9.0",
     "@types/history": "^4.7.3",
     "@types/lodash": "^4.14.141",
     "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.9.3",
     "@types/react-router": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
-    "electron": "^3.1.10",
-    "electron-rebuild": "^1.8.4",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.15.1",
+    "css-loader": "3.4.0",
+    "electron": "^4.2.7",
+    "electron-rebuild": "^1.8.8",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.1",
+    "node-loader": "^0.6.0",
     "prettier": "^1.18.2",
-    "rollup": "^1.23.0",
-    "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-filesize": "^6.2.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-local-resolve": "^1.0.7",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-typescript2": "^0.24.3",
-    "semantic-release": "^15.13.24",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.6.3"
-  },
-  "peerDependencies": {
-    "electron": "^3.1.10"
+    "semantic-release": "^15.13.31",
+    "style-loader": "1.0.2",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "6.2.1",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
   },
   "husky": {
     "hooks": {

@@ -17,8 +17,6 @@ export function observeAndRenderTouchBarForActivePaneItem(item: Item | null, tou
   }
   activePane = item.constructor.name;
 
-  console.log('ACTIVE PANE ITEM', item);
-  console.log('CONSTRUCTOR NAME', item.constructor.name);
   const buttons = getTouchBarButtonsForPane(item);
 
   if (!buttons) {

@@ -31,6 +31,8 @@
     "lib"
   ],
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "async": "^2.6.1",
     "color-convert": "^2.0.0",
     "emojilib": "^2.4.0",
@@ -39,7 +41,9 @@
     "octicons": "0.0.0-882a0ed25",
     "react": "16.10.2",
     "react-dom": "^16.11.0",
+    "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
+    "redux": "^4.0.4",
     "svg2img": "^0.6.1",
     "touchbar-electron-renderer": "^0.3.4",
     "winston": "^3.2.1"

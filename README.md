@@ -142,3 +142,18 @@ atom --dev .
 
 Then, to check if the changes are working, just refresh the atom window:
 _"Command Pallette"_ -> _"Window: Reload"_.
+
+## FAQ
+
+-   **Installation/build fails:** This package uses
+    [node-canvas](https://github.com/Automattic/node-canvas)
+    under the hood. If build/install keeps failing, you'll probably have to
+    manually build the package. You'll have to install the dependencies
+    according to the [compiling](https://github.com/Automattic/node-canvas#compiling)
+    guide. And then go to the place where this package is installed and run the
+    `rebuild` script.
+
+    ```sh
+    cd ~/.atom/packages/touchbar-plus
+    npm run rebuild
+    ```

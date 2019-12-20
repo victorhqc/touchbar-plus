@@ -117,7 +117,7 @@ First install dependencies & run initial build and compilation.
 
 ```sh
 npm i
-npm run compile
+npm run build
 
 # Now we need to rebuild modules targeting Atom's Electron version for
 "node-canvas" which is needed
@@ -131,7 +131,7 @@ apm rebuild
 Then for regular development
 
 ```sh
-npm run compile:watch
+DEBUG=1 npm run build:watch
 ```
 
 And open Atom in development mode

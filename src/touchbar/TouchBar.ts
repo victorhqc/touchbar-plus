@@ -48,7 +48,6 @@ class TouchBar implements Disposable {
     }
 
     atomWindow.setTouchBar(null);
-    this.history = null;
   }
 
   toggle() {

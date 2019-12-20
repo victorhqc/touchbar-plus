@@ -32,7 +32,6 @@
     "lib"
   ],
   "dependencies": {
-    "async": "^2.6.1",
     "color-convert": "^2.0.0",
     "emojilib": "^2.4.0",
     "history": "^4.10.1",

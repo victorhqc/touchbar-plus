@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ -z "$CI" ]]; then
-  npm run rebuild
+if [[ -z "$REBUILD" ]]; then
+  echo "Post install disabled"
 else
-  echo "Post install disabled in CI"
+  npm run rebuild
 fi

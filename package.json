@@ -9,7 +9,7 @@
     "osx",
     "atom"
   ],
-  "repository": "https://github.com/atom/touchbar-plus",
+  "repository": "https://github.com/victorhqc/touchbar-plus",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
@@ -32,7 +32,6 @@
     "lib"
   ],
   "dependencies": {
-    "async": "^2.6.1",
     "color-convert": "^2.0.0",
     "emojilib": "^2.4.0",
     "history": "^4.10.1",

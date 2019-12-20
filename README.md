@@ -155,5 +155,5 @@ _"Command Pallette"_ -> _"Window: Reload"_.
 
     ```sh
     cd ~/.atom/packages/touchbar-plus
-    npm run rebuild
+    REBUILD=1 npm i
     ```

@@ -18,10 +18,10 @@
     "core:loaded-shell-environment"
   ],
   "scripts": {
-    "compile": "webpack",
-    "compile:watch": "webpack --watch",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
     "electron-rebuild": "electron-rebuild --version 4.2.7 --which-module canvas --force",
-    "start": "npm run compile -- --watch",
+    "start": "npm run build -- --watch",
     "lint": "eslint src/**/*.ts",
     "fix:mac": "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PATH}:/usr/local/opt/libffi/lib/pkgconfig\"",
     "rebuild": "npm run electron-rebuild",

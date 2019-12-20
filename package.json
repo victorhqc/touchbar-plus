@@ -9,7 +9,11 @@
     "osx",
     "atom"
   ],
-  "repository": "https://github.com/victorhqc/touchbar-plus",
+  "homepage": "https://github.com/victorhqc/touchbar-plus",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:victorhqc/touchbar-plus.git"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

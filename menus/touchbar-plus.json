@@ -4,10 +4,6 @@
       {
         "label": "Toggle touchbar-plus",
         "command": "touchbar-plus:toggle"
-      },
-      {
-        "label": "Config touchbar-plus",
-        "command": "touchbar-plus:config"
       }
     ]
   },
@@ -21,10 +17,6 @@
             {
               "label": "Toggle",
               "command": "touchbar-plus:toggle"
-            },
-            {
-              "label": "Config touchbar-plus",
-              "command": "touchbar-plus:config"
             }
           ]
         }

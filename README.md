@@ -119,10 +119,11 @@ First install dependencies & run initial build and compilation.
 npm i
 npm run build
 
-# Now we need to rebuild modules targeting Atom's Electron version for
-"node-canvas" which is needed
-# to render images.
-npm run rebuild
+# Now we need to build the octicons.
+# Please add the dependencies instructed here.
+# https://github.com/Automattic/node-canvas#compiling
+npm run build:octicons
+
 # Make sure apm is installed
 https://flight-manual.atom.io/getting-started/sections/installing-atom/
 apm rebuild
@@ -142,18 +143,3 @@ atom --dev .
 
 Then, to check if the changes are working, just refresh the atom window:
 _"Command Pallette"_ -> _"Window: Reload"_.
-
-## FAQ
-
--   **Installation/build fails:** This package uses
-    [node-canvas](https://github.com/Automattic/node-canvas)
-    under the hood. If build/install keeps failing, you'll probably have to
-    manually build the package. You'll have to install the dependencies
-    according to the [compiling](https://github.com/Automattic/node-canvas#compiling)
-    guide. And then go to the place where this package is installed and run the
-    `rebuild` script.
-
-    ```sh
-    cd ~/.atom/packages/touchbar-plus
-    REBUILD=1 npm i
-    ```

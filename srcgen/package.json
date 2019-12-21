@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "touchbar-plus",
+  "version": "0.0.0",
+  "description": "Better Atom touchbar support for Mac OSX",
+  "homepage": "https://github.com/victorhqc/touchbar-plus",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:victorhqc/touchbar-plus.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node --files --project=./tsconfig.json src/build/octicons.ts"
+  },
+  "dependencies": {
+    "@primer/octicons": "^9.3.1",
+    "canvas": "^2.6.1",
+    "octicons": "0.0.0-882a0ed25"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "prettier": "^1.18.2",
+    "svg2img": "^0.6.1",
+    "ts-node": "8.5.4",
+    "typescript": "^3.6.3"
+  }
+}

@@ -6,13 +6,16 @@ import octicons from 'octicons';
 
 const readDirAync = promisify(fs.readdir);
 const writeFileAsync = promisify(fs.writeFile);
+const mkdirAync = promisify(fs.mkdir);
 
-const rootPath = path.join(__dirname, '..', '..');
+const rootPath = path.join(__dirname, '..', '..', '..');
 const nodeModulesPath = path.join(rootPath, 'node_modules');
 const octiconsPath = path.join(nodeModulesPath, '@primer', 'octicons', 'build', 'svg');
 const picturesTargetPath = path.join(rootPath, 'lib', 'build', 'octicons');
 
 async function convertImages() {
+  await mkdirAync(picturesTargetPath, { recursive: true });
+
   const files = await readDirAync(octiconsPath);
   console.log(`Parsing ${files.length} files`);
   for (const file of files) {

@@ -1,6 +1,6 @@
 {
   "name": "touchbar-plus",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
   "version": "0.1.0",
   "description": "Better Atom touchbar support for Mac OSX",
   "keywords": [

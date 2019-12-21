@@ -6,5 +6,6 @@ declare module 'svg2img' {
   interface Sizes {
     width: number;
     height: number;
+    preserveAspectRatio?: boolean;
   }
 }

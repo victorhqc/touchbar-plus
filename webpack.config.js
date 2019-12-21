@@ -14,6 +14,9 @@ module.exports = {
     atom: 'atom',
     remote: 'remote'
   },
+  node: {
+    __dirname: false
+  },
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'lib'),

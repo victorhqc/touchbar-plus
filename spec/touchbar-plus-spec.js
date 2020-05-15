@@ -1,6 +1,6 @@
 'use babel';
 
-import TouchbarPlus from '../lib/touchbar-plus';
+import TouchbarPlus from '../lib/index';
 
 // Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
 //

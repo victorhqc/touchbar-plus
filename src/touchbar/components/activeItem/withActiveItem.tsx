@@ -13,7 +13,7 @@ export function withActiveItem<P extends WithActiveItemProps = WithActiveItemPro
 
     render() {
       return (
-        <ActiveItem>{args => <WrappedComponent {...(this.props as P)} {...args} />}</ActiveItem>
+        <ActiveItem>{(args) => <WrappedComponent {...(this.props as P)} {...args} />}</ActiveItem>
       );
     }
   };

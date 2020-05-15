@@ -35,7 +35,7 @@ class TouchBarPlus {
     this.subscriptions.add(
       atom.workspace.observeActivePaneItem(
         debounce(
-          item => {
+          (item) => {
             const name = gePaneItemName(item);
             logger.debug(`Navigate to route /${name}`);
             history.push(`/${name}`);

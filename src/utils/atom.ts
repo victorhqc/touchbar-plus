@@ -13,5 +13,5 @@ export function executeAtomCommand(command: string) {
   }
 
   const commands = command.split('|');
-  commands.forEach(command => atom.commands.dispatch(activeElement, command));
+  commands.forEach((command) => atom.commands.dispatch(activeElement, command));
 }

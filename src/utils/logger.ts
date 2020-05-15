@@ -7,7 +7,7 @@ const logger = createLogger({
   level,
   format: combine(timestamp(), splat(), errors(), prettyPrint()),
   defaultMeta: { service: 'touchbar-plus' },
-  transports: [new transports.File({ filename: 'touchbar-plus.error.log', level: 'error' })],
+  transports: [new transports.Console({ level: 'error' })],
 });
 
 if (process.env.DEBUG === '1' || process.env.DEBUG === 'true') {

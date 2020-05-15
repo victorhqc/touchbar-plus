@@ -18,10 +18,8 @@ type EmojiWithName = Emoji & { name: string };
 const validParams = ['keywords', 'category'];
 
 function emojisByQuery(query: Query) {
-  const params = Object.keys(query).filter(param => validParams.includes(param));
-  console.log('params', params);
-  // keywords.some(keyword => emoji.keywords.includes(keyword))
-  return emojisArray.filter(emoji => {
+  const params = Object.keys(query).filter((param) => validParams.includes(param));
+  return emojisArray.filter((emoji) => {
     return params.reduce<boolean>((acc, param) => {
       // If a param resulted in false, then there's no need to check it again.
       // Multiple params are considered `AND`.
@@ -33,7 +31,7 @@ function emojisByQuery(query: Query) {
         case 'category':
           return emoji.category === query[param];
         case 'keywords':
-          return (query[param] || []).some(keyword => emoji.keywords.includes(keyword));
+          return (query[param] || []).some((keyword) => emoji.keywords.includes(keyword));
         default:
           return acc;
       }
@@ -46,4 +44,4 @@ interface Query {
   category?: string;
 }
 
-export const searchEmojis = memoize(emojisByQuery, query => JSON.stringify(query));
+export const searchEmojis = memoize(emojisByQuery, (query) => JSON.stringify(query));

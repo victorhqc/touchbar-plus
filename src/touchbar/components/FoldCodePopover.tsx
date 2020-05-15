@@ -47,7 +47,7 @@ export default class FoldCodePopover extends Component<object, State> {
 
   renderFoldButtons() {
     const foldingLevels = 5;
-    return buildArray(foldingLevels).map(index => (
+    return buildArray(foldingLevels).map((index) => (
       <touchbar-button key={`fold-${index}`} onClick={this.foldCode(index + 1)} iconPosition="left">
         {`At level ${index + 1}`}
       </touchbar-button>

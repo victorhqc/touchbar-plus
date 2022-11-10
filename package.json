@@ -63,7 +63,7 @@
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "css-loader": "3.4.0",
-    "electron": "^4.2.7",
+    "electron": "^18.3.7",
     "electron-rebuild": "^1.8.8",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
